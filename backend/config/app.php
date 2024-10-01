@@ -123,4 +123,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers'=>[
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+    ],
+
+    'aliases'=>[
+        'JWYAuth'=>Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWYAuthFactory'=>Tymon\JWTAuth\Facades\JWTFactory::class,
+    ]
 ];
