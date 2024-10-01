@@ -30,20 +30,28 @@ class _LoginState extends State<Login> {
 
     if (response.statusCode == 200) {
       // Login successful, navigate to Welcome screen
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-      );
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+        );
+      }
     } else if (response.statusCode == 401) {
       // Unauthorized - Incorrect credentials
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Incorrect email or password. Please try again.'),
-      ));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Incorrect email or password. Please try again.'),
+          ),
+        );
+      }
     } else {
       // Remember to handle other error cases
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('An error occurred. Please try again later.'),
-      ));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('An error occurred. Please try again later.'),
+        ));
+      }
     }
   }
 
