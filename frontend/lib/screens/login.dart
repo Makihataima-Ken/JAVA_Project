@@ -18,14 +18,22 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   Future<void> _login(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
     String url = "YOUR_LOGIN_API_ENDPOINT";
     var response = await http.post(Uri.parse(url), body: {
-      'email': _phoneController.text,
+      'phoneNumber': _phoneNumberController.text,
       'password': _passwordController.text,
+    });
+
+    setState(() {
+      _isLoading = false;
     });
 
     if (response.statusCode == 200) {
@@ -131,7 +139,7 @@ class _LoginState extends State<Login> {
                                             bottom: BorderSide(
                                                 color: Colors.grey.shade200))),
                                     child: TextField(
-                                      controller: _phoneController,
+                                      controller: _phoneNumberController,
                                       keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           hintText: "Phone number",
@@ -200,6 +208,9 @@ class _LoginState extends State<Login> {
                             duration: const Duration(milliseconds: 1600),
                             child: MaterialButton(
                               onPressed: () {
+                                setState(() {
+                                  _isLoading = true;
+                                });
                                 _login(context);
                               },
                               height: 50,
@@ -208,14 +219,20 @@ class _LoginState extends State<Login> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
+                              child: _isLoading
+                                  ? const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "Login",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                             )),
                       ],
                     ),
