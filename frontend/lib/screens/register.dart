@@ -17,14 +17,22 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   Future<void> _register(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
     String url = "YOUR_REGISTER_API_ENDPOINT";
     var response = await http.post(Uri.parse(url), body: {
-      'email': _phoneController.text,
+      'phoneNumber': _phoneNumberController.text,
       'password': _passwordController.text,
+    });
+
+    setState(() {
+      _isLoading = false;
     });
 
     if (response.statusCode == 201) {
@@ -166,7 +174,7 @@ class _RegisterState extends State<Register> {
                                                 color: Colors.grey.shade200))),
                                     child: TextField(
                                       keyboardType: TextInputType.number,
-                                      controller: _phoneController,
+                                      controller: _phoneNumberController,
                                       decoration: const InputDecoration(
                                           hintText: "Phone number",
                                           hintStyle:
@@ -218,6 +226,9 @@ class _RegisterState extends State<Register> {
                             duration: const Duration(milliseconds: 1600),
                             child: MaterialButton(
                               onPressed: () {
+                                setState(() {
+                                  _isLoading = true;
+                                });
                                 _register(context);
                               },
                               height: 50,
@@ -226,14 +237,20 @@ class _RegisterState extends State<Register> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  "Register",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
+                              child: _isLoading
+                                  ? const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "Regiser",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                             )),
                       ],
                     ),
