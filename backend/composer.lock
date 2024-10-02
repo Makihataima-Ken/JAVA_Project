@@ -1052,16 +1052,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.25.0",
+            "version": "v11.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e"
+                "reference": "b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
-                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b",
+                "reference": "b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b",
                 "shasum": ""
             },
             "require": {
@@ -1080,7 +1080,7 @@
                 "fruitcake/php-cors": "^1.3",
                 "guzzlehttp/guzzle": "^7.8",
                 "guzzlehttp/uri-template": "^1.0",
-                "laravel/prompts": "^0.1.18|^0.2.0",
+                "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
                 "laravel/serializable-closure": "^1.3",
                 "league/commonmark": "^2.2.1",
                 "league/flysystem": "^3.8.0",
@@ -1257,25 +1257,25 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-09-26T11:21:58+00:00"
+            "time": "2024-10-01T14:29:34+00:00"
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "a132ccf64d46da183b7cf3729df260e836cc7e15"
+                "reference": "ea57a2261093986721d4a5f4f9524d76f21f9fa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/a132ccf64d46da183b7cf3729df260e836cc7e15",
-                "reference": "a132ccf64d46da183b7cf3729df260e836cc7e15",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/ea57a2261093986721d4a5f4f9524d76f21f9fa0",
+                "reference": "ea57a2261093986721d4a5f4f9524d76f21f9fa0",
                 "shasum": ""
             },
             "require": {
+                "composer-runtime-api": "^2.2",
                 "ext-mbstring": "*",
-                "illuminate/collections": "^10.0|^11.0",
                 "php": "^8.1",
                 "symfony/console": "^6.2|^7.0"
             },
@@ -1284,6 +1284,7 @@
                 "laravel/framework": ">=10.17.0 <10.25.0"
             },
             "require-dev": {
+                "illuminate/collections": "^10.0|^11.0",
                 "mockery/mockery": "^1.5",
                 "pestphp/pest": "^2.3",
                 "phpstan/phpstan": "^1.11",
@@ -1295,7 +1296,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2.x-dev"
+                    "dev-main": "0.3.x-dev"
                 }
             },
             "autoload": {
@@ -1313,9 +1314,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.2.1"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.0"
             },
-            "time": "2024-09-19T10:28:37+00:00"
+            "time": "2024-09-30T14:27:51+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1446,34 +1447,31 @@
         },
         {
             "name": "lcobucci/clock",
-            "version": "3.3.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/clock.git",
-                "reference": "db3713a61addfffd615b79bf0bc22f0ccc61b86b"
+                "reference": "fb533e093fd61321bfcbac08b131ce805fe183d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/clock/zipball/db3713a61addfffd615b79bf0bc22f0ccc61b86b",
-                "reference": "db3713a61addfffd615b79bf0bc22f0ccc61b86b",
+                "url": "https://api.github.com/repos/lcobucci/clock/zipball/fb533e093fd61321bfcbac08b131ce805fe183d3",
+                "reference": "fb533e093fd61321bfcbac08b131ce805fe183d3",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "psr/clock": "^1.0"
-            },
-            "provide": {
-                "psr/clock-implementation": "1.0"
+                "php": "^8.0",
+                "stella-maris/clock": "^0.1.4"
             },
             "require-dev": {
-                "infection/infection": "^0.29",
-                "lcobucci/coding-standard": "^11.1.0",
-                "phpstan/extension-installer": "^1.3.1",
-                "phpstan/phpstan": "^1.10.25",
-                "phpstan/phpstan-deprecation-rules": "^1.1.3",
-                "phpstan/phpstan-phpunit": "^1.3.13",
-                "phpstan/phpstan-strict-rules": "^1.5.1",
-                "phpunit/phpunit": "^11.3.6"
+                "infection/infection": "^0.26",
+                "lcobucci/coding-standard": "^8.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -1494,7 +1492,7 @@
             "description": "Yet another clock abstraction",
             "support": {
                 "issues": "https://github.com/lcobucci/clock/issues",
-                "source": "https://github.com/lcobucci/clock/tree/3.3.1"
+                "source": "https://github.com/lcobucci/clock/tree/2.2.0"
             },
             "funding": [
                 {
@@ -1506,45 +1504,47 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-09-24T20:45:14+00:00"
+            "time": "2022-04-19T19:34:17+00:00"
         },
         {
             "name": "lcobucci/jwt",
-            "version": "4.3.0",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "4d7de2fe0d51a96418c0d04004986e410e87f6b4"
+                "reference": "55564265fddf810504110bd68ca311932324b0e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/4d7de2fe0d51a96418c0d04004986e410e87f6b4",
-                "reference": "4d7de2fe0d51a96418c0d04004986e410e87f6b4",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/55564265fddf810504110bd68ca311932324b0e9",
+                "reference": "55564265fddf810504110bd68ca311932324b0e9",
                 "shasum": ""
             },
             "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "ext-sodium": "*",
-                "lcobucci/clock": "^2.0 || ^3.0",
+                "lcobucci/clock": "^2.0",
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "infection/infection": "^0.21",
+                "infection/infection": "^0.20",
                 "lcobucci/coding-standard": "^6.0",
-                "mikey179/vfsstream": "^1.6.7",
-                "phpbench/phpbench": "^1.2",
+                "mikey179/vfsstream": "^1.6",
+                "phpbench/phpbench": "^0.17",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^1.4",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
                 "phpunit/php-invoker": "^3.1",
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^9.4"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Lcobucci\\JWT\\": "src"
@@ -1568,7 +1568,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lcobucci/jwt/issues",
-                "source": "https://github.com/lcobucci/jwt/tree/4.3.0"
+                "source": "https://github.com/lcobucci/jwt/tree/4.0.4"
             },
             "funding": [
                 {
@@ -1580,7 +1580,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-01-02T13:28:00+00:00"
+            "time": "2021-09-28T19:18:28+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3249,6 +3249,53 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "stella-maris/clock",
+            "version": "0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stella-maris-solutions/clock.git",
+                "reference": "fa23ce16019289a18bb3446fdecd45befcdd94f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stella-maris-solutions/clock/zipball/fa23ce16019289a18bb3446fdecd45befcdd94f8",
+                "reference": "fa23ce16019289a18bb3446fdecd45befcdd94f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0|^8.0",
+                "psr/clock": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StellaMaris\\Clock\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Heigl",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A pre-release of the proposed PSR-20 Clock-Interface",
+            "homepage": "https://gitlab.com/stella-maris/clock",
+            "keywords": [
+                "clock",
+                "datetime",
+                "point in time",
+                "psr20"
+            ],
+            "support": {
+                "source": "https://github.com/stella-maris-solutions/clock/tree/0.1.7"
+            },
+            "time": "2022-11-25T16:15:06+00:00"
         },
         {
             "name": "symfony/clock",
@@ -6345,16 +6392,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "d54af9d5745e3680d8a6463ffd9f314aa53eb2d1"
+                "reference": "511e9c95b0f3ee778dc9e11e242bcd2af8e002cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/d54af9d5745e3680d8a6463ffd9f314aa53eb2d1",
-                "reference": "d54af9d5745e3680d8a6463ffd9f314aa53eb2d1",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/511e9c95b0f3ee778dc9e11e242bcd2af8e002cd",
+                "reference": "511e9c95b0f3ee778dc9e11e242bcd2af8e002cd",
                 "shasum": ""
             },
             "require": {
@@ -6404,7 +6451,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-09-22T19:04:21+00:00"
+            "time": "2024-09-27T14:58:09+00:00"
         },
         {
             "name": "mockery/mockery",

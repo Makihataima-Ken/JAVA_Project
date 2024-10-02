@@ -18,32 +18,48 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   Future<void> _login(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
     String url = "YOUR_LOGIN_API_ENDPOINT";
     var response = await http.post(Uri.parse(url), body: {
-      'email': _phoneController.text,
+      'phoneNumber': _phoneNumberController.text,
       'password': _passwordController.text,
+    });
+
+    setState(() {
+      _isLoading = false;
     });
 
     if (response.statusCode == 200) {
       // Login successful, navigate to Welcome screen
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-      );
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+        );
+      }
     } else if (response.statusCode == 401) {
       // Unauthorized - Incorrect credentials
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Incorrect email or password. Please try again.'),
-      ));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Incorrect email or password. Please try again.'),
+          ),
+        );
+      }
     } else {
       // Remember to handle other error cases
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('An error occurred. Please try again later.'),
-      ));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('An error occurred. Please try again later.'),
+        ));
+      }
     }
   }
 
@@ -123,7 +139,7 @@ class _LoginState extends State<Login> {
                                             bottom: BorderSide(
                                                 color: Colors.grey.shade200))),
                                     child: TextField(
-                                      controller: _phoneController,
+                                      controller: _phoneNumberController,
                                       keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           hintText: "Phone number",
@@ -191,21 +207,32 @@ class _LoginState extends State<Login> {
                         FadeInUp(
                             duration: const Duration(milliseconds: 1600),
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                _login(context);
+                              },
                               height: 50,
                               // margin: EdgeInsets.symmetric(horizontal: 50),
                               color: orange900,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
+                              child: _isLoading
+                                  ? const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "Login",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                             )),
                       ],
                     ),
