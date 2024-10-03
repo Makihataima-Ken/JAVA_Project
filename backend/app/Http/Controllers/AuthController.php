@@ -13,15 +13,19 @@ class AuthController extends Controller
     {   
         //validation
         $validator = Validator::make($request->all(), [
-            'name'=>'required',
-            'lastname'=>'required',
-            'phone'=>'required|string|unique:users',
+            'name'=>'required|string',
+            'lastname'=>'required|string',
+            'phone'=>'required|string|min:10|max:10|unique:users,phone',
             'password' => 'required|string|confirmed|min:8',
         ]);
         //wrong input
         if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json([
+                            'success' => false,
+                            'message' => 'Validation errors',
+                            'errors' => $validator->errors()], 400);
         }
+
         //register user
         $user=User::create(array_merge([$validator->validated(),'password'=>bcrypt($request->password)]));
 
