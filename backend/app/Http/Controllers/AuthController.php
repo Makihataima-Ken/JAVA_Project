@@ -33,17 +33,19 @@ class AuthController extends Controller
     {
         //validation
         $validator = Validator::make($request->all(), [
-            'phone'=>'required|string|unique:users',
+            'phone'=>'required|string|exists:users,phone',
             'password' => 'required|string|min:8',
         ]);
         //wrong input
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+        // Authentication attempt
         if(!$token=Auth::attempt($validator->validated()))
         {
         return response()->json(['error'=>'unauthorized'],401);
         }
+        // Generate token if authentication succeeds
         return $this->createNewToken($token);
     }
 
