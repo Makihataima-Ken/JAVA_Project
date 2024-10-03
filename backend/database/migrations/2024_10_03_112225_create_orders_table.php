@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('university');
+            $table->string('major');
             $table->string('type');
+            $table->longText('description')->nullable();
+            $table->string('deadline');
             $table->timestamps();
         });
     }
