@@ -25,7 +25,7 @@ class _RegisterState extends State<Register> {
     setState(() {
       _isLoading = true;
     });
-    String url = "YOUR_REGISTER_API_ENDPOINT";
+    String url = "http://127.0.0.1:8000/";
     var response = await http.post(Uri.parse(url), body: {
       'phoneNumber': _phoneNumberController.text,
       'password': _passwordController.text,
@@ -157,7 +157,6 @@ class _RegisterState extends State<Register> {
                                             bottom: BorderSide(
                                                 color: Colors.grey.shade200))),
                                     child: const TextField(
-                                      obscureText: true,
                                       decoration: InputDecoration(
                                           hintText: "Last Name",
                                           hintStyle:
