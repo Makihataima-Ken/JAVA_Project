@@ -18,7 +18,7 @@ class AppInterceptors extends Interceptor {
     if (!options.headers.containsKey(HttpHeaders.authorizationHeader)) {
       const fakeToken = "FakeToken";
 
-      options.headers[HttpHeaders.authorizationHeader] = 'Bearer ${fakeToken}';
+      options.headers[HttpHeaders.authorizationHeader] = 'Bearer $fakeToken';
     }
 
     return handler.next(options);
