@@ -10,12 +10,6 @@ class AuthRepository extends BaseAuthRepository {
   }
 
   @override
-  Future<AppResponse<UserEntity?>> loginWithToken() {
-    // TODO: implement loginWithToken
-    throw UnimplementedError();
-  }
-
-  @override
   Future<AppResponse> logout() {
     // TODO: implement logout
     throw UnimplementedError();

@@ -6,7 +6,5 @@ abstract class BaseAuthRepository {
 
   Future<AppResponse<AuthUser?>> login(LoginRequest request);
 
-  Future<AppResponse<UserEntity?>> loginWithToken();
-
   Future<AppResponse> logout();
 }
