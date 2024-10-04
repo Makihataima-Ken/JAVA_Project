@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(Request $request):JsonResponse
     {   
         //validation
         $validator = Validator::make($request->all(), [
@@ -34,7 +35,7 @@ class AuthController extends Controller
 
     }
 
-    public function login(Request $request)
+    public function login(Request $request):JsonResponse
     {
         //validation
         $validator = Validator::make($request->all(), [
@@ -54,7 +55,7 @@ class AuthController extends Controller
         return $this->createNewToken($token);
     }
 
-    public function createNewToken($token)
+    public function createNewToken($token):JsonResponse
     {
         return response()->json([
             'access_token'=>$token,
@@ -64,12 +65,12 @@ class AuthController extends Controller
         ]);
     }
 
-    public function profile()
+    public function profile():JsonResponse
     {
         return response()->json(Auth::user());
     }
 
-    public function logout()
+    public function logout():JsonResponse
     {
         Auth::logout();
         return response()->json(['message'=>'logged out successfully']);
