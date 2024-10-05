@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/cubits/cubits.dart';
 
 class TemporaryScreen extends StatelessWidget {
   const TemporaryScreen({super.key});
@@ -13,7 +15,9 @@ class TemporaryScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                print('logout');
+                context.read<LoginUserCubit>().signOut();
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('login', (route) => false);
               },
               icon: const Icon(Icons.logout_rounded))
         ],
