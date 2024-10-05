@@ -6,6 +6,8 @@ part 'register_request.g.dart';
 @freezed
 class RegisterRequest with _$RegisterRequest {
   factory RegisterRequest({
+    required String firstName,
+    required String lastName,
     required String phoneNumber,
     required String password,
     //ignore: invalid_annotation_target

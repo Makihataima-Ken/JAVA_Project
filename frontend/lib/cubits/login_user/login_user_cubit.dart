@@ -34,16 +34,18 @@ class LoginUserCubit extends Cubit<LoginUserState> {
 
       return null;
     }
-
     return response.message;
   }
 
   Future<String?> signUp(SignupData data) async {
     final response = await _authRepository.register(
       RegisterRequest(
-          phoneNumber: data.name!,
-          password: data.password!,
-          passwordConfirmation: data.password!),
+        firstName: data.additionalSignupData!['firstName']!,
+        lastName: data.additionalSignupData!['lastName']!,
+        phoneNumber: data.name!,
+        password: data.password!,
+        passwordConfirmation: data.password!,
+      ),
     );
     if (response.success) {
       _authBloc.add(Authenticated(

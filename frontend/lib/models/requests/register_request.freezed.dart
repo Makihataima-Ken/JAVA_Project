@@ -20,6 +20,8 @@ RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RegisterRequest {
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get password =>
       throw _privateConstructorUsedError; //ignore: invalid_annotation_target
@@ -39,7 +41,9 @@ abstract class $RegisterRequestCopyWith<$Res> {
       _$RegisterRequestCopyWithImpl<$Res, RegisterRequest>;
   @useResult
   $Res call(
-      {String phoneNumber,
+      {String firstName,
+      String lastName,
+      String phoneNumber,
       String password,
       @JsonKey(name: "password_confirmation") String passwordConfirmation});
 }
@@ -57,11 +61,21 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
     Object? phoneNumber = null,
     Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_value.copyWith(
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -87,7 +101,9 @@ abstract class _$$RegisterRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String phoneNumber,
+      {String firstName,
+      String lastName,
+      String phoneNumber,
       String password,
       @JsonKey(name: "password_confirmation") String passwordConfirmation});
 }
@@ -103,11 +119,21 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? firstName = null,
+    Object? lastName = null,
     Object? phoneNumber = null,
     Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_$RegisterRequestImpl(
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -128,7 +154,9 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RegisterRequestImpl implements _RegisterRequest {
   _$RegisterRequestImpl(
-      {required this.phoneNumber,
+      {required this.firstName,
+      required this.lastName,
+      required this.phoneNumber,
       required this.password,
       @JsonKey(name: "password_confirmation")
       required this.passwordConfirmation});
@@ -136,6 +164,10 @@ class _$RegisterRequestImpl implements _RegisterRequest {
   factory _$RegisterRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterRequestImplFromJson(json);
 
+  @override
+  final String firstName;
+  @override
+  final String lastName;
   @override
   final String phoneNumber;
   @override
@@ -147,7 +179,7 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
   @override
   String toString() {
-    return 'RegisterRequest(phoneNumber: $phoneNumber, password: $password, passwordConfirmation: $passwordConfirmation)';
+    return 'RegisterRequest(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, password: $password, passwordConfirmation: $passwordConfirmation)';
   }
 
   @override
@@ -155,6 +187,10 @@ class _$RegisterRequestImpl implements _RegisterRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegisterRequestImpl &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.password, password) ||
@@ -165,8 +201,8 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, phoneNumber, password, passwordConfirmation);
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, phoneNumber,
+      password, passwordConfirmation);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +221,9 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
 abstract class _RegisterRequest implements RegisterRequest {
   factory _RegisterRequest(
-      {required final String phoneNumber,
+      {required final String firstName,
+      required final String lastName,
+      required final String phoneNumber,
       required final String password,
       @JsonKey(name: "password_confirmation")
       required final String passwordConfirmation}) = _$RegisterRequestImpl;
@@ -193,6 +231,10 @@ abstract class _RegisterRequest implements RegisterRequest {
   factory _RegisterRequest.fromJson(Map<String, dynamic> json) =
       _$RegisterRequestImpl.fromJson;
 
+  @override
+  String get firstName;
+  @override
+  String get lastName;
   @override
   String get phoneNumber;
   @override

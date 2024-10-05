@@ -5,6 +5,7 @@ import 'package:frontend/blocs/blocs.dart';
 import 'package:frontend/cubits/cubits.dart';
 import 'package:frontend/repositories/repositories.dart';
 import 'package:frontend/screens/screens.dart';
+import 'package:frontend/screens/splash_screen/splash_screen.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -46,8 +47,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.deepPurple,
           ),
-          initialRoute: LoginScreen.routeName,
+          initialRoute: SplashScreen.routeName,
           routes: {
+            SplashScreen.routeName: (_) => const SplashScreen(),
             LoginScreen.routeName: (_) => const LoginScreen(),
             TemporaryScreen.routeName: (_) => const TemporaryScreen(),
           },
