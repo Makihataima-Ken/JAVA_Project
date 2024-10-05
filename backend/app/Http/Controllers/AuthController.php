@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 class AuthController extends Controller
@@ -29,7 +30,7 @@ class AuthController extends Controller
         }
 
         //register user
-        $user=User::create(array_merge([$validator->validated(),'password'=>bcrypt($request->password)]));
+        $user=User::create(array_merge($validator->validated(),['password'=>bcrypt($request->password)]));
 
         return response()->json(['message'=>'registered successfully','user'=>$user],201);
 
