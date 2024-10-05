@@ -39,6 +39,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const BlankContent();
+    return const Scaffold(
+      body: BlankContent(
+        isLoading: true,
+      ),
+    );
   }
 }
