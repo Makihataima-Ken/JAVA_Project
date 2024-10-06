@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'api','prefix'=>'auth'],function(){
@@ -9,3 +10,5 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile']);
         Route::post('/logout',[AuthController::class,'logout']);
 });
+
+Route::post('/add_post',[OrderController::class,'add_post']);
