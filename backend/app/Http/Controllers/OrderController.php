@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
-{
-    public function add_post(Request $request):JsonResponse
+{   
+
+    public function add_order(Request $request):JsonResponse
     {
         $user=Auth::user();
 
@@ -22,16 +23,11 @@ class OrderController extends Controller
             'deadline'=>'required|string',
         ]);
 
-        // Create a new post instance with mass assignment
-        $order = new Order([
-            'university' => $request->university,
-            'major'=>$request->major,
-            'type'=>$request->type,
-            'description' => $request->description,
-            'deadline'=>$request->deadline,
+        // Create a new order instance with mass assignment
+        $order = new Order(array_merge($request->only(['university', 'major', 'type', 'description', 'deadline']), [
             'status' => 'pending',
             'user_id' => $user->id,
-        ]);
+        ]));
 
         $order->save();
 

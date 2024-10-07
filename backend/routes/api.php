@@ -11,4 +11,4 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function(){
         Route::post('/logout',[AuthController::class,'logout']);
 });
 
-Route::post('/add_post',[OrderController::class,'add_post']);
+Route::post('/add_order',[OrderController::class,'add_order']);
