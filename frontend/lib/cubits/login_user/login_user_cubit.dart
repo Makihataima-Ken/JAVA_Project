@@ -22,19 +22,24 @@ class LoginUserCubit extends Cubit<LoginUserState> {
         );
 
   Future<String?> signIn(LoginData data) async {
-    final response = await _authRepository.login(
-      LoginRequest(phoneNumber: data.name, password: data.password),
-    );
-    if (response.success) {
-      _authBloc.add(Authenticated(
-        isAuthenticated: true,
-        token: response.data!.token,
-        user: response.data!.user,
-      ));
-
-      return null;
+    try {
+      final response = await _authRepository.login(
+        LoginRequest(phoneNumber: data.name, password: data.password),
+      );
+      print('Login response: ${response.toString()}');
+      if (response.success) {
+        _authBloc.add(Authenticated(
+          isAuthenticated: true,
+          token: response.data!.token,
+          user: response.data!.user,
+        ));
+        return null;
+      }
+      return response.message;
+    } catch (e) {
+      print('Login error: $e');
+      return 'An error occurred during login';
     }
-    return response.message;
   }
 
   Future<String?> signUp(SignupData data) async {

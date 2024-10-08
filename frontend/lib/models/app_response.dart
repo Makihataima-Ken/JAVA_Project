@@ -50,6 +50,8 @@ class AppResponse<T> extends Equatable {
       success,
       message,
       data ?? "",
+      statusCode,
+      statusMessage,
     ];
   }
 
@@ -57,7 +59,14 @@ class AppResponse<T> extends Equatable {
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,
   ) {
-    return _$AppResponseFromJson(json, fromJsonT);
+    return AppResponse(
+      success: json['success'] as bool? ?? false, // Default to false if null
+      message: json['message'] as String? ?? '',
+      statusCode: json['statusCode'] as int? ?? 200,
+      statusMessage:
+          json['statusMessage'] as String? ?? "The request has succeeded.",
+      data: json['data'] != null ? fromJsonT(json['data']) : null,
+    );
   }
 
   Map<String, dynamic> toJson(
