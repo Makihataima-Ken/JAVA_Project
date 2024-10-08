@@ -7,7 +7,8 @@ uses(RefreshDatabase::class);
 
 test('register', function () {
     
-    $response = $this->postJson('/routes/api/auth/register', [
+    //sends the test user info
+    $response = $this->postJson('/api/auth/register', [
         'name' => 'J3fr',
         'lastname' => 'ma7fud',
         'phone' => '1234567890',
@@ -15,18 +16,19 @@ test('register', function () {
         'password_confirmation' => 'password',
     ]);
 
+    //asserts the feedback from the url
     $response->assertStatus(JsonResponse::HTTP_CREATED)
              ->assertJson([
                  'message' => 'registered successfully',
                  'user' => [
-                     'name' => 'John',
-                     'lastname' => 'Doe',
+                     'name' => 'J3fr',
+                     'lastname' => 'ma7fud',
                      'phone' => '1234567890',
                  ],
              ]);
-
+    //check for presence in database         
     $this->assertDatabaseHas('users', [
         'phone' => '1234567890',
     ]);
-    //$response->assertStatus(201);
+    
 });
