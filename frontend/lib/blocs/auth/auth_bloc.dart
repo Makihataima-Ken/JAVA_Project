@@ -31,7 +31,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
     return {
       'isAuthenticated': state.isAuthenticated,
       'token': state.token,
-      'user': state.user?.toJson(),
+      'user': state.user != null ? state.user!.toJson() : null,
     };
   }
 }
