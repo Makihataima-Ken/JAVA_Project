@@ -34,4 +34,11 @@ class OrderController extends Controller
         return response()->json(['message'=>'added an order','order'=>$order],201);
 
     }
+
+    public function cancel_order($id): JsonResponse
+    {
+        $order=Order::find($id);
+        $order->delete();
+        return response()->json(['message'=>'order canceled']);
+    }
 }

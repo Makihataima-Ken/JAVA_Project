@@ -12,3 +12,4 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function(){
 });
 
 Route::post('/add_order',[OrderController::class,'add_order']);
+Route::get('/cancel_order/{id}',[OrderController::class,'cancel_order']);
