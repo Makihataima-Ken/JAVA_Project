@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 uses(RefreshDatabase::class);
 
 test('ordering', function () {
-    $response = $this->postJson('/add_order', [
+    $response = $this->postJson('/api/add_order', [
         'university' => 'Damas',
         'major' => 'med',
         'type' => 'grad pro',
