@@ -8,7 +8,7 @@ uses(RefreshDatabase::class);
 test('register', function () {
     
     //sends the test user info
-    $response = $this->postJson('/api/auth/register', [
+    $response = $this->postJson('/auth/register', [
         'name' => 'J3fr',
         'lastname' => 'ma7fud',
         'phone' => '1234567890',
