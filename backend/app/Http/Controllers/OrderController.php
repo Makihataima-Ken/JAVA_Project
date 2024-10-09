@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {   
-
+    /**
+     * request orders
+     * @param $request 
+     * @return JsonResponse
+     */
     public function add_order(Request $request):JsonResponse
     {
         $user=Auth::user();
@@ -33,5 +37,17 @@ class OrderController extends Controller
 
         return response()->json(['message'=>'added an order','order'=>$order],201);
 
+    }
+
+    /**
+     * cancel orders
+     * @param $id 
+     * @return JsonResponse
+     */
+    public function cancel_order($id): JsonResponse
+    {
+        $order=Order::find($id);
+        $order->delete();
+        return response()->json(['message'=>'order canceled']);
     }
 }

@@ -11,7 +11,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 class AuthController extends Controller
-{
+{   
+    /**
+     * register user
+     * @param $request
+     * @return JsonResponse
+     */
     public function register(Request $request):JsonResponse
     {   
         //validation
@@ -38,6 +43,11 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * login user
+     * @param $request
+     * @return JsonResponse
+     */
     public function login(Request $request):JsonResponse
     {
         //validation
@@ -68,11 +78,19 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * show profile
+     * @return JsonResponse
+     */
     public function profile():JsonResponse
     {
         return response()->json(Auth::user());
     }
 
+    /**
+     * logout user
+     * @return JsonResponse
+     */
     public function logout():JsonResponse
     {
         Auth::logout();
