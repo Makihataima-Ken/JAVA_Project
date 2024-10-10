@@ -60,7 +60,7 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         // Authentication attempt
-        if(!$token=Auth::attempt($validator->validated()))
+        if(!$token=Auth::attempt(['phone' => $request->phone, 'password' => $request->password]))
         {
         return response()->json(['error'=>'unauthorized'],401);
         }
