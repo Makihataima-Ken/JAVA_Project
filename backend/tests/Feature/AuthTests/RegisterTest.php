@@ -33,3 +33,25 @@ test('register_valid_input_test', function () {
     ]);
     
 });
+
+//register 2nd test
+test('register_invalid_phone_test', function () {
+    
+    //sends the test user info
+    $response = $this->postJson('/api/auth/register', [
+        'name' => 'J3fr',
+        'lastname' => 'ma7fud',
+        'phone' => '123456789',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+    ]);
+
+    //asserts the feedback from the url
+    $response->assertStatus(JsonResponse::HTTP_BAD_REQUEST)
+            ->assertJson([
+                    'success' => false,
+                    'message' => 'Validation errors',
+             ]);
+    
+});
+

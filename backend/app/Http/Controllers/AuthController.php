@@ -26,6 +26,7 @@ class AuthController extends Controller
             'phone'=>'required|string|min:10|max:10|unique:users,phone',
             'password' => 'required|string|confirmed|min:8',
         ]);
+        
         //wrong input
         if ($validator->fails()) {
             return response()->json([
