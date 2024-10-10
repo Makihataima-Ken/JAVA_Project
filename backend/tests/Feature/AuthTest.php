@@ -5,7 +5,8 @@ use Illuminate\Http\JsonResponse;
 
 uses(RefreshDatabase::class);
 
-test('register', function () {
+//register 1st test
+test('register_valid_input_test', function () {
     
     //sends the test user info
     $response = $this->postJson('/api/auth/register', [
@@ -33,7 +34,8 @@ test('register', function () {
     
 });
 
-test('login', function () {
+//login 1st test
+test('login_valid_input_test', function () {
 
         // Create a user
         $user = User::create([

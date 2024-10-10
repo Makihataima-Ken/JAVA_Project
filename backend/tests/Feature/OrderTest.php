@@ -5,7 +5,10 @@ use Illuminate\Http\JsonResponse;
 
 uses(RefreshDatabase::class);
 
-test('ordering', function () {
+//1st test
+test('order_fruition', function () {
+
+    //makes a test order
     $response = $this->postJson('/api/add_order', [
         'university' => 'Damas',
         'major' => 'med',
@@ -14,6 +17,7 @@ test('ordering', function () {
         'deadline'=>'1/8/2024',
     ]);
 
+    //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
     ->assertJson([
         'message' => 'added an order',
@@ -26,6 +30,6 @@ test('ordering', function () {
             'status'=>'pending',
         ],
     ]);
-    
+    //check for order's record in database
     $this->assertDatabaseHas('orders');
 });
