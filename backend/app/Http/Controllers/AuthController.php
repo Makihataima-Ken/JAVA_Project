@@ -72,6 +72,8 @@ class AuthController extends Controller
     public function createNewToken($token):JsonResponse
     {
         return response()->json([
+            'success' => true,
+            'message'=>'logged in successfully',
             'access_token'=>$token,
             'token_type'=>'bearer',
             'expires_in'=>Auth::factory()->getTTl()*60,

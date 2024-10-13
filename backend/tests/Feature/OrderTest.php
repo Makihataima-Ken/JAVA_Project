@@ -45,7 +45,7 @@ test('order_fruition', function () {
     $this->assertDatabaseHas('orders');
 });
 
-//1st test
+//2nd test
 test('cancel_order_fruition', function () {
 
     // Create a user and authenticate
