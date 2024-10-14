@@ -57,7 +57,7 @@ test('cancel_order_fruition', function () {
         'deadline'=>'1/8/2024',
     ]);
 
-    //makes a test order
+    //cancel test
     $response = $this->deleteJson('/api/cancel_order/'.$order->id);
 
     //make sure the respone is working
