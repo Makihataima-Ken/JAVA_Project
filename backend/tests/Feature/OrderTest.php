@@ -58,11 +58,11 @@ test('cancel_order_fruition', function () {
     ]);
 
     //makes a test order
-    $response = $this->postJson('/api/cancel_order/{$order->id}');
+    $response = $this->deleteJson('/api/cancel_order/'.$order->id);
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
-            ->assertJson(['message' => 'registered successfully']);
+            ->assertJson(['message' => 'order canceled']);
 
 
 });
