@@ -19,11 +19,12 @@ class AuthRepository extends BaseAuthRepository {
       data: request.toJson(),
     );
 
+    print('Raw login response: ${response.data}');
+
     return AppResponse<AuthUser?>.fromJson(
-        response.data,
-        (dynamic json) => response.data['success'] && json != null
-            ? AuthUser.fromJson(json)
-            : null);
+      response.data,
+      (dynamic json) => json != null ? AuthUser.fromJson(json) : null,
+    );
   }
 
   @override
@@ -41,9 +42,8 @@ class AuthRepository extends BaseAuthRepository {
     );
 
     return AppResponse<AuthUser?>.fromJson(
-        response.data,
-        (dynamic json) => response.data['success'] && json != null
-            ? AuthUser.fromJson(json)
-            : null);
+      response.data,
+      (dynamic json) => json != null ? AuthUser.fromJson(json) : null,
+    );
   }
 }
