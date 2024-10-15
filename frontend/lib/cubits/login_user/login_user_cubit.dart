@@ -43,26 +43,30 @@ class LoginUserCubit extends Cubit<LoginUserState> {
   }
 
   Future<String?> signUp(SignupData data) async {
-    final response = await _authRepository.register(
-      RegisterRequest(
-        firstName: data.additionalSignupData!['firstName']!,
-        lastName: data.additionalSignupData!['lastName']!,
-        phoneNumber: data.name!,
-        password: data.password!,
-        passwordConfirmation: data.password!,
-      ),
-    );
-    if (response.success) {
-      _authBloc.add(Authenticated(
-        isAuthenticated: true,
-        token: response.data!.token,
-        user: response.data!.user,
-      ));
-
-      return null;
+    try {
+      final response = await _authRepository.register(
+        RegisterRequest(
+          firstName: data.additionalSignupData!['firstName']!,
+          lastName: data.additionalSignupData!['lastName']!,
+          phoneNumber: data.name!,
+          password: data.password!,
+          passwordConfirmation: data.password!,
+        ),
+      );
+      print('Register response: ${response.message} - ${response.data}');
+      if (response.success) {
+        _authBloc.add(Authenticated(
+          isAuthenticated: true,
+          token: response.data!.token,
+          user: response.data!.user,
+        ));
+        return null;
+      }
+      return response.message;
+    } catch (e) {
+      print('Signup error: $e');
+      return 'An error occurred during signup';
     }
-
-    return response.message;
   }
 
   Future<void> signOut() async {
