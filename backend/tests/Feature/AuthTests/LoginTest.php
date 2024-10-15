@@ -87,6 +87,7 @@ test('admin_login_valid_input_test', function () {
     ]);
 
     $order = Order::create([
+        'user_id' => $user->id,
         'university' => 'Damas',
         'major' => 'med',
         'type' => 'grad pro',
@@ -103,8 +104,19 @@ test('admin_login_valid_input_test', function () {
 
     $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJson([
+                'success' => true,
+                'message'=>'logged in successfully',
                 'token_type'=>'bearer',
                 'expires_in'=>Auth::factory()->getTTl()*60,
-                'orders'=>$order,
+                'orders'=> [[            
+                            'university' => 'Damas',
+                            'major' => 'med',
+                            'type' => 'grad pro',
+                            'description'=>'smth smth',
+                            'deadline'=>'1/8/2024',
+                            'user_id' => $user->id,
+                ],],
              ]);
+
+    //$response->dump();
 });
