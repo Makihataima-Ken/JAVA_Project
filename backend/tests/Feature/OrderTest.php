@@ -45,7 +45,7 @@ test('order_fruition', function () {
     $this->assertDatabaseHas('orders');
 });
 
-//1st test
+//2nd test
 test('cancel_order_fruition', function () {
 
     // Create a user and authenticate
@@ -57,12 +57,12 @@ test('cancel_order_fruition', function () {
         'deadline'=>'1/8/2024',
     ]);
 
-    //makes a test order
-    $response = $this->postJson('/api/cancel_order/{$order->id}');
+    //cancel test
+    $response = $this->deleteJson('/api/cancel_order/'.$order->id);
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
-            ->assertJson(['message' => 'registered successfully']);
+            ->assertJson(['message' => 'order canceled']);
 
 
 });

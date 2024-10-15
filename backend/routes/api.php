@@ -15,8 +15,8 @@ Route::group(['prefix'=>'auth'],function(){
 
 //Order procedures
 Route::post('/add_order',[OrderController::class,'add_order']);
-Route::get('/cancel_order/{id}',[OrderController::class,'cancel_order']);
+Route::delete('/cancel_order/{id}',[OrderController::class,'cancel_order']);
 
 //Admin procedures
-Route::get('/approve_order/{id}',[AdminController::class,'approve_order']);
-Route::get('/reject_order/{id}',[AdminController::class,'reject_order']);
+Route::post('/approve_order/{id}',[AdminController::class,'approve_order']);
+Route::post('/reject_order/{id}',[AdminController::class,'reject_order']);
