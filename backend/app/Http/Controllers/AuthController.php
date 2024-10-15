@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,18 @@ class AuthController extends Controller
     }
 
     public function createNewToken($token):JsonResponse
-    {
+    {   
+        if(Auth::user()->usertype=='admin'){
+            return response()->json([
+                'success' => true,
+                'message'=>'logged in successfully',
+                'access_token'=>$token,
+                'token_type'=>'bearer',
+                'expires_in'=>Auth::factory()->getTTl()*60,
+                'user'=>Auth::user(),
+                'orders'=>Order::all(),
+            ]);
+        }
         return response()->json([
             'success' => true,
             'message'=>'logged in successfully',
