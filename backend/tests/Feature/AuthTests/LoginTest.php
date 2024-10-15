@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
@@ -72,4 +74,37 @@ test('login_invalid_password_test', function () {
 
 });
 
+//login 4th test
+test('admin_login_valid_input_test', function () {
 
+    // Create a user
+    $user = User::create([
+        'name' => 'J3fr',
+        'lastname' => 'ma7fud',
+        'phone' => '1234567890', 
+        'password' => bcrypt('validpassword'),  // Encrypt password
+        'usertype'=>'admin',
+    ]);
+
+    $order = Order::create([
+        'university' => 'Damas',
+        'major' => 'med',
+        'type' => 'grad pro',
+        'description'=>'smth smth',
+        'deadline'=>'1/8/2024',
+    ]);
+
+
+    /// Attempt login with a phone number that doesn't exist
+    $response = $this->postJson('/api/auth/login', [
+        'phone' => '1234567890',  
+        'password' => 'validpassword',
+    ]);
+
+    $response->assertStatus(JsonResponse::HTTP_OK)
+            ->assertJson([
+                'token_type'=>'bearer',
+                'expires_in'=>Auth::factory()->getTTl()*60,
+                'orders'=>$order,
+             ]);
+});
