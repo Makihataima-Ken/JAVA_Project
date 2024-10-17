@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('new_orders', function (Blueprint $table) {
+        Schema::create('super_new_orders', function (Blueprint $table) {
             $table->id();
             $table->string('university');
             $table->string('major');
@@ -26,13 +26,13 @@ return new class extends Migration
         });
 
         DB::statement('
-            INSERT INTO new_orders (id, university, major, type, description, deadline, user_id, status)
+            INSERT INTO super_new_orders (id, university, major, type, description, deadline, user_id, status)
             SELECT id, university, major, type, description, deadline, user_id, status
             FROM orders
         ');
 
         schema::drop('orders');
-        Schema::rename('new_orders','order');
+        Schema::rename('super_new_orders','orders');
 
     }
 
@@ -44,3 +44,4 @@ return new class extends Migration
         schema::dropIfExists('orders');
     }
 };
+

@@ -25,12 +25,13 @@ class OrderController extends Controller
             'type' => 'required|string',
             'description'=>'required|string|max:255',
             'deadline'=>'required|string',
-            'file_path' => 'mimes:pdf,doc,docx|max:2048'
+            'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
         ]);
 
         $filePath=null;
+
         if ($request->hasFile('file_path')){
-            $filePath = $request->file('file_path')->store('uploads', 'public');
+            $filePath = $request->file('file_path')->store('uploads', 'app/public');
         }
 
         // Create a new order instance with mass assignment

@@ -22,5 +22,6 @@ class Order extends Model
         'description',
         'deadline',
         'status',
+        'file_path',
     ];
 }

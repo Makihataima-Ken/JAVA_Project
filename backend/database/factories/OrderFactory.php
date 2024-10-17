@@ -23,6 +23,7 @@ class OrderFactory extends Factory
             'description'=>fake()->name(),
             'deadline'=>fake()->name(),
             'status'=>fake()->name(),
+            'file_path'=>fake()->filePath(),
         ];
     }
 }
