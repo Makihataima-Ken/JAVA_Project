@@ -11,12 +11,7 @@ uses(RefreshDatabase::class);
 test('order_fruition', function () {
 
     // Create a user and authenticate
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
-        'phone' => '1234567890', 
-        'password' => bcrypt('validpassword'),  // Encrypt password
-    ]);
+    $user = User::factory()->create();
     $this->actingAs($user);
 
     //makes a test order
