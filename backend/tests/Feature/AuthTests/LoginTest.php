@@ -78,9 +78,7 @@ test('login_invalid_password_test', function () {
 test('admin_login_valid_input_test', function () {
 
     // Create a user
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
+    $user = User::factory()->create([
         'phone' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
         'usertype'=>'admin',

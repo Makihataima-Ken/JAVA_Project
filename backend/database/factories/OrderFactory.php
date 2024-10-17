@@ -17,12 +17,12 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'university'=>fake()->university(),
-            'major'=>fake(),
-            'type'=>fake(),
-            'description'=>fake(),
-            'deadline'=>fake(),
-            'status'=>fake(),
+            'university'=>fake()->name(),
+            'major'=>fake()->name(),
+            'type'=>fake()->name(),
+            'description'=>fake()->name(),
+            'deadline'=>fake()->name(),
+            'status'=>fake()->name(),
         ];
     }
 }

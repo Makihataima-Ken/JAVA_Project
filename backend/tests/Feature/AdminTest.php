@@ -10,14 +10,7 @@ uses(RefreshDatabase::class);
 //1st test
 test('approve_order_validation', function () {
 
-    $order = Order::create([
-        'university' => 'Damas',
-        'major' => 'med',
-        'type' => 'grad pro',
-        'description'=>'smth smth',
-        'deadline'=>'1/8/2024',
-        'status'=>'pending',
-    ]);
+    $order = Order::factory()->create();
 
     $response = $this->postJson('/api/approve_order/'.$order->id);
 
@@ -32,14 +25,7 @@ test('approve_order_validation', function () {
 //2nd test
 test('reject_order_validation', function () {
 
-    $order = Order::create([
-        'university' => 'Damas',
-        'major' => 'med',
-        'type' => 'grad pro',
-        'description'=>'smth smth',
-        'deadline'=>'1/8/2024',
-        'status'=>'pending',
-    ]);
+    $order = Order::factory()->create();
 
     $response = $this->postJson('/api/reject_order/'.$order->id);
 
