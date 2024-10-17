@@ -25,12 +25,19 @@ class OrderController extends Controller
             'type' => 'required|string',
             'description'=>'required|string|max:255',
             'deadline'=>'required|string',
+            'file_path' => 'mimes:pdf,doc,docx|max:2048'
         ]);
+
+        $filePath=null;
+        if ($request->hasFile('file_path')){
+            $filePath = $request->file('file_path')->store('uploads', 'public');
+        }
 
         // Create a new order instance with mass assignment
         $order = new Order(array_merge($request->only(['university', 'major', 'type', 'description', 'deadline']), [
             'status' => 'pending',
             'user_id' => $user->id,
+            'file_path'=>$filePath,
         ]));
 
         $order->save();
