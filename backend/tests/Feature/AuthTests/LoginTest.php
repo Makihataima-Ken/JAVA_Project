@@ -12,9 +12,7 @@ uses(RefreshDatabase::class);
 test('login_invalid_phone_test', function () {
 
     // Create a user
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
+    $user = User::factory()->create([
         'phone' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
@@ -33,9 +31,7 @@ test('login_invalid_phone_test', function () {
 test('login_valid_input_test', function () {
 
     // Create a user
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
+    $user = User::factory()->create([
         'phone' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
@@ -57,9 +53,7 @@ test('login_valid_input_test', function () {
 test('login_invalid_password_test', function () {
 
     // Create a user
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
+    $user = User::factory()->create([
         'phone' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
