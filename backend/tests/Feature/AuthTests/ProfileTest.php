@@ -8,12 +8,7 @@ uses(RefreshDatabase::class);
 test('Profile_test', function () {
 
     // Create a user
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
-        'phone' => '1234567890', 
-        'password' => bcrypt('validpassword'),  // Encrypt password
-    ]);
+    $user = User::factory()->create();
 
     $response = $this->get('/api/auth/profile');
 

@@ -11,12 +11,7 @@ uses(RefreshDatabase::class);
 test('order_fruition', function () {
 
     // Create a user and authenticate
-    $user = User::create([
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
-        'phone' => '1234567890', 
-        'password' => bcrypt('validpassword'),  // Encrypt password
-    ]);
+    $user = User::factory()->create();
     $this->actingAs($user);
 
     //makes a test order
@@ -49,13 +44,7 @@ test('order_fruition', function () {
 test('cancel_order_fruition', function () {
 
     // Create a user and authenticate
-    $order = Order::create([
-        'university' => 'Damas',
-        'major' => 'med',
-        'type' => 'grad pro',
-        'description'=>'smth smth',
-        'deadline'=>'1/8/2024',
-    ]);
+    $order = Order::factory()->create();
 
     //cancel test
     $response = $this->deleteJson('/api/cancel_order/'.$order->id);
