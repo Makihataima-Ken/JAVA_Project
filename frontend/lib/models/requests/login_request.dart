@@ -6,7 +6,7 @@ part 'login_request.g.dart';
 @freezed
 class LoginRequest with _$LoginRequest {
   factory LoginRequest({
-    required String phoneNumber,
+    required String phone,
     required String password,
   }) = _LoginRequest;
 

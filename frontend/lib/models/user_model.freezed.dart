@@ -21,9 +21,9 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserEntity {
   int get id => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get lastname => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $UserEntityCopyWith<$Res> {
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call({int id, String firstName, String lastName, String phoneNumber});
+  $Res call({int id, String name, String lastname, String phone});
 }
 
 /// @nodoc
@@ -54,26 +54,26 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
+    Object? name = null,
+    Object? lastname = null,
+    Object? phone = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -87,7 +87,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String firstName, String lastName, String phoneNumber});
+  $Res call({int id, String name, String lastname, String phone});
 }
 
 /// @nodoc
@@ -102,26 +102,26 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
+    Object? name = null,
+    Object? lastname = null,
+    Object? phone = null,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -132,9 +132,9 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 class _$UserEntityImpl implements _UserEntity {
   _$UserEntityImpl(
       {required this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.phoneNumber});
+      required this.name,
+      required this.lastname,
+      required this.phone});
 
   factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserEntityImplFromJson(json);
@@ -142,15 +142,15 @@ class _$UserEntityImpl implements _UserEntity {
   @override
   final int id;
   @override
-  final String firstName;
+  final String name;
   @override
-  final String lastName;
+  final String lastname;
   @override
-  final String phoneNumber;
+  final String phone;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber)';
+    return 'UserEntity(id: $id, name: $name, lastname: $lastname, phone: $phone)';
   }
 
   @override
@@ -159,18 +159,15 @@ class _$UserEntityImpl implements _UserEntity {
         (other.runtimeType == runtimeType &&
             other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.lastname, lastname) ||
+                other.lastname == lastname) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, id, name, lastname, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -189,9 +186,9 @@ class _$UserEntityImpl implements _UserEntity {
 abstract class _UserEntity implements UserEntity {
   factory _UserEntity(
       {required final int id,
-      required final String firstName,
-      required final String lastName,
-      required final String phoneNumber}) = _$UserEntityImpl;
+      required final String name,
+      required final String lastname,
+      required final String phone}) = _$UserEntityImpl;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$UserEntityImpl.fromJson;
@@ -199,11 +196,11 @@ abstract class _UserEntity implements UserEntity {
   @override
   int get id;
   @override
-  String get firstName;
+  String get name;
   @override
-  String get lastName;
+  String get lastname;
   @override
-  String get phoneNumber;
+  String get phone;
   @override
   @JsonKey(ignore: true)
   _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
@@ -217,7 +214,12 @@ AuthUser _$AuthUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthUser {
   UserEntity get user => throw _privateConstructorUsedError;
+  @JsonKey(name: "access_token")
   String get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_type')
+  String get tokenType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'expires_in')
+  int get expiresIn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -230,7 +232,11 @@ abstract class $AuthUserCopyWith<$Res> {
   factory $AuthUserCopyWith(AuthUser value, $Res Function(AuthUser) then) =
       _$AuthUserCopyWithImpl<$Res, AuthUser>;
   @useResult
-  $Res call({UserEntity user, String token});
+  $Res call(
+      {UserEntity user,
+      @JsonKey(name: "access_token") String token,
+      @JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') int expiresIn});
 
   $UserEntityCopyWith<$Res> get user;
 }
@@ -250,6 +256,8 @@ class _$AuthUserCopyWithImpl<$Res, $Val extends AuthUser>
   $Res call({
     Object? user = null,
     Object? token = null,
+    Object? tokenType = null,
+    Object? expiresIn = null,
   }) {
     return _then(_value.copyWith(
       user: null == user
@@ -260,6 +268,14 @@ class _$AuthUserCopyWithImpl<$Res, $Val extends AuthUser>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
+      expiresIn: null == expiresIn
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -280,7 +296,11 @@ abstract class _$$AuthUserImplCopyWith<$Res>
       __$$AuthUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserEntity user, String token});
+  $Res call(
+      {UserEntity user,
+      @JsonKey(name: "access_token") String token,
+      @JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') int expiresIn});
 
   @override
   $UserEntityCopyWith<$Res> get user;
@@ -299,6 +319,8 @@ class __$$AuthUserImplCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? token = null,
+    Object? tokenType = null,
+    Object? expiresIn = null,
   }) {
     return _then(_$AuthUserImpl(
       user: null == user
@@ -309,6 +331,14 @@ class __$$AuthUserImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
+      expiresIn: null == expiresIn
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -316,7 +346,11 @@ class __$$AuthUserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthUserImpl implements _AuthUser {
-  _$AuthUserImpl({required this.user, required this.token});
+  _$AuthUserImpl(
+      {required this.user,
+      @JsonKey(name: "access_token") required this.token,
+      @JsonKey(name: 'token_type') required this.tokenType,
+      @JsonKey(name: 'expires_in') required this.expiresIn});
 
   factory _$AuthUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthUserImplFromJson(json);
@@ -324,11 +358,18 @@ class _$AuthUserImpl implements _AuthUser {
   @override
   final UserEntity user;
   @override
+  @JsonKey(name: "access_token")
   final String token;
+  @override
+  @JsonKey(name: 'token_type')
+  final String tokenType;
+  @override
+  @JsonKey(name: 'expires_in')
+  final int expiresIn;
 
   @override
   String toString() {
-    return 'AuthUser(user: $user, token: $token)';
+    return 'AuthUser(user: $user, token: $token, tokenType: $tokenType, expiresIn: $expiresIn)';
   }
 
   @override
@@ -337,12 +378,17 @@ class _$AuthUserImpl implements _AuthUser {
         (other.runtimeType == runtimeType &&
             other is _$AuthUserImpl &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.tokenType, tokenType) ||
+                other.tokenType == tokenType) &&
+            (identical(other.expiresIn, expiresIn) ||
+                other.expiresIn == expiresIn));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user, token);
+  int get hashCode =>
+      Object.hash(runtimeType, user, token, tokenType, expiresIn);
 
   @JsonKey(ignore: true)
   @override
@@ -360,8 +406,11 @@ class _$AuthUserImpl implements _AuthUser {
 
 abstract class _AuthUser implements AuthUser {
   factory _AuthUser(
-      {required final UserEntity user,
-      required final String token}) = _$AuthUserImpl;
+          {required final UserEntity user,
+          @JsonKey(name: "access_token") required final String token,
+          @JsonKey(name: 'token_type') required final String tokenType,
+          @JsonKey(name: 'expires_in') required final int expiresIn}) =
+      _$AuthUserImpl;
 
   factory _AuthUser.fromJson(Map<String, dynamic> json) =
       _$AuthUserImpl.fromJson;
@@ -369,7 +418,14 @@ abstract class _AuthUser implements AuthUser {
   @override
   UserEntity get user;
   @override
+  @JsonKey(name: "access_token")
   String get token;
+  @override
+  @JsonKey(name: 'token_type')
+  String get tokenType;
+  @override
+  @JsonKey(name: 'expires_in')
+  int get expiresIn;
   @override
   @JsonKey(ignore: true)
   _$$AuthUserImplCopyWith<_$AuthUserImpl> get copyWith =>
