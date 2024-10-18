@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {   
@@ -37,11 +37,14 @@ class AuthController extends Controller
         }
 
         //register user
-        $user=User::create(array_merge($validator->validated(),['password'=>bcrypt($request->password)]));
+        $user=User::create(array_merge($validator->validated(),['password'=>bcrypt($request->password),'usertype'=>'user']));
 
         $user->save();
 
-        return response()->json(['message'=>'registered successfully','user'=>$user],201);
+        // Generate a JWT token for the user
+        $token = JWTAuth::fromUser($user);
+
+        return $this->createNewToken($token,'Registered',$user,201);
 
     }
 
@@ -62,17 +65,17 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         // Authentication attempt
-        if(!$token=Auth::attempt(['phone' => $request->phone, 'password' => $request->password]))
+        if(!$token=JWTAuth::attempt(['phone' => $request->phone, 'password' => $request->password]))
         {
         return response()->json(['error'=>'unauthorized'],401);
         }
         // Generate token if authentication succeeds
-        return $this->createNewToken($token);
+        return $this->createNewToken($token,'logged in',Auth::user(),200);
     }
 
-    public function createNewToken($token):JsonResponse
+    public function createNewToken($token,$word,$user,$statusCode):JsonResponse
     {   
-        if(Auth::user()->usertype=='admin'){
+        if($user->usertype=='admin'){
             return response()->json([
                 'success' => true,
                 'message'=>'logged in successfully',
@@ -81,16 +84,17 @@ class AuthController extends Controller
                 'expires_in'=>Auth::factory()->getTTl()*60,
                 'user'=>Auth::user(),
                 'orders'=>Order::all(),
-            ]);
+            ],$statusCode);
         }
+
         return response()->json([
             'success' => true,
-            'message'=>'logged in successfully',
+            'message'=> $word.' successfully',
             'access_token'=>$token,
             'token_type'=>'bearer',
             'expires_in'=>Auth::factory()->getTTl()*60,
-            'user'=>Auth::user(),
-        ]);
+            'user'=>$user,
+        ],$statusCode);
     }
 
     /**

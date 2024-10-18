@@ -20,11 +20,13 @@ test('register_valid_input_test', function () {
     //asserts the feedback from the url
     $response->assertStatus(JsonResponse::HTTP_CREATED)
              ->assertJson([
-                 'message' => 'registered successfully',
-                 'user' => [
-                     'name' => 'J3fr',
-                     'lastname' => 'ma7fud',
-                     'phone' => '1234567890',
+                'success' => true,
+                'message' => 'Registered successfully',
+                'token_type'=>'bearer',
+                'user' => [
+                    'name' => 'J3fr',
+                    'lastname' => 'ma7fud',
+                    'phone' => '1234567890',
                  ],
              ]);
     //check for presence in database         
