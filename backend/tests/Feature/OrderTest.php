@@ -4,6 +4,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
@@ -68,18 +69,20 @@ test('order_fruition_with_file', function () {
     Storage::fake('public');
     
     // Create a fake file to upload
-    $order = Order::factory()->create();
-    $file=$order->file_path;
+    $file=UploadedFile::fake()->create('document.pdf', 100, 'application/pdf');
 
-    //makes a test order
-    $response = $this->postJson('/api/add_order', [
+    //request data
+    $request= [
         'university' => 'Damas',
         'major' => 'med',
         'type' => 'grad pro',
         'description'=>'smth smth',
-        'deadline'=>'1/8/2024',
-        'file'=>$file,
-    ]);
+        'deadline'=>'2024-08-01',
+        'file_path'=>$file,
+    ];
+    //makes a test order
+    $response = $this->postJson('/api/add_order',$request);
+
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
@@ -90,13 +93,22 @@ test('order_fruition_with_file', function () {
             'major' => 'med',
             'type' => 'grad pro',
             'description'=>'smth smth',
-            'deadline'=>'1/8/2024',
+            'deadline'=>'2024-08-01',
             'status'=>'pending',
-            //'file'=>$file,
+            'file_path' => 'uploads/' . $file->hashName(),
         ],
     ]);
     //check for order's record in database
-    $this->assertDatabaseHas('orders');
+    $this->assertDatabaseHas('orders', [
+        'user_id' => $user->id,
+        'university' => 'Damas',
+        'major' => 'med',
+        'type' => 'grad pro',
+        'description' => 'smth smth',
+        'deadline' => '2024-08-01',
+        'status' => 'pending',
+        
+    ]);
 
     // Assert that the file was stored in the expected directory (e.g., 'public/postimage')
     //Storage::disk('public')->assertExists('uploads/' . $file->hashName());

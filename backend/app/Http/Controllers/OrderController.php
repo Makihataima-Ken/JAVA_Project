@@ -31,7 +31,7 @@ class OrderController extends Controller
         $filePath=null;
 
         if ($request->hasFile('file_path')){
-            $filePath = $request->file('file_path')->store('uploads', 'app/public');
+            $filePath = $request->file('file_path')->store('uploads', 'public');
         }
 
         // Create a new order instance with mass assignment
