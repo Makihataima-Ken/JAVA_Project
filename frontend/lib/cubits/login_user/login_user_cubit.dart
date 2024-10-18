@@ -69,7 +69,7 @@ class LoginUserCubit extends Cubit<LoginUserState> {
       return response.message;
     } catch (e) {
       print('Signup error: $e');
-      return 'An error occurred during signup';
+      return 'An error occurred during signup'; 
     }
   }
 
