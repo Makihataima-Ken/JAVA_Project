@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:frontend/blocs/blocs.dart';
 import 'package:frontend/repositories/repositories.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:frontend/utils/token_storage/token_storage.dart';
 
 part 'login_user_state.dart';
 part 'login_user_cubit.freezed.dart';
@@ -11,6 +12,7 @@ part 'login_user_cubit.freezed.dart';
 class LoginUserCubit extends Cubit<LoginUserState> {
   final AuthRepository _authRepository;
   final AuthBloc _authBloc;
+  final TokenStorage _tokenStorage = TokenStorage();
 
   LoginUserCubit({
     required AuthRepository authRepository,
@@ -28,6 +30,7 @@ class LoginUserCubit extends Cubit<LoginUserState> {
       );
       print('Login response: ${response.toString()}');
       if (response.success) {
+        await _tokenStorage.saveToken(response.data!.token);
         _authBloc.add(Authenticated(
           isAuthenticated: true,
           token: response.data!.token,
@@ -55,6 +58,7 @@ class LoginUserCubit extends Cubit<LoginUserState> {
       );
       print('Register response: ${response.message} - ${response.data}');
       if (response.success) {
+        await _tokenStorage.saveToken(response.data!.token);
         _authBloc.add(Authenticated(
           isAuthenticated: true,
           token: response.data!.token,
@@ -65,11 +69,12 @@ class LoginUserCubit extends Cubit<LoginUserState> {
       return response.message;
     } catch (e) {
       print('Signup error: $e');
-      return 'An error occurred during signup';
+      return 'An error occurred during signup'; 
     }
   }
 
   Future<void> signOut() async {
+    await _tokenStorage.deleteToken();
     _authRepository.logout();
     _authBloc.add(const Authenticated(
       isAuthenticated: false,

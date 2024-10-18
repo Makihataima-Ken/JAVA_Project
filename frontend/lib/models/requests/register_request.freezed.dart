@@ -23,8 +23,7 @@ mixin _$RegisterRequest {
   String get name => throw _privateConstructorUsedError;
   String get lastname => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String get password =>
-      throw _privateConstructorUsedError; //ignore: invalid_annotation_target
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(name: "password_confirmation")
   String get passwordConfirmation => throw _privateConstructorUsedError;
 
@@ -172,7 +171,6 @@ class _$RegisterRequestImpl implements _RegisterRequest {
   final String phone;
   @override
   final String password;
-//ignore: invalid_annotation_target
   @override
   @JsonKey(name: "password_confirmation")
   final String passwordConfirmation;
@@ -237,7 +235,7 @@ abstract class _RegisterRequest implements RegisterRequest {
   String get phone;
   @override
   String get password;
-  @override //ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "password_confirmation")
   String get passwordConfirmation;
   @override
