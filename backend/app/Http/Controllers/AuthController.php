@@ -73,6 +73,14 @@ class AuthController extends Controller
         return $this->createNewToken($token,'logged in',Auth::user(),200);
     }
 
+    /**
+     * token generator
+     * @param $token
+     * @param $word
+     * @param $user
+     * @param $statusCode
+     * @return JsonResponse
+     */
     public function createNewToken($token,$word,$user,$statusCode):JsonResponse
     {   
         if($user->usertype=='admin'){
