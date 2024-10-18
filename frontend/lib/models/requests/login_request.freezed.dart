@@ -20,7 +20,7 @@ LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginRequest {
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $LoginRequestCopyWith<$Res> {
           LoginRequest value, $Res Function(LoginRequest) then) =
       _$LoginRequestCopyWithImpl<$Res, LoginRequest>;
   @useResult
-  $Res call({String phoneNumber, String password});
+  $Res call({String phone, String password});
 }
 
 /// @nodoc
@@ -51,13 +51,13 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phoneNumber = null,
+    Object? phone = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -75,7 +75,7 @@ abstract class _$$LoginRequestImplCopyWith<$Res>
       __$$LoginRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phoneNumber, String password});
+  $Res call({String phone, String password});
 }
 
 /// @nodoc
@@ -89,13 +89,13 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phoneNumber = null,
+    Object? phone = null,
     Object? password = null,
   }) {
     return _then(_$LoginRequestImpl(
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -108,19 +108,19 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginRequestImpl implements _LoginRequest {
-  _$LoginRequestImpl({required this.phoneNumber, required this.password});
+  _$LoginRequestImpl({required this.phone, required this.password});
 
   factory _$LoginRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginRequestImplFromJson(json);
 
   @override
-  final String phoneNumber;
+  final String phone;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'LoginRequest(phoneNumber: $phoneNumber, password: $password)';
+    return 'LoginRequest(phone: $phone, password: $password)';
   }
 
   @override
@@ -128,15 +128,14 @@ class _$LoginRequestImpl implements _LoginRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginRequestImpl &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber, password);
+  int get hashCode => Object.hash(runtimeType, phone, password);
 
   @JsonKey(ignore: true)
   @override
@@ -154,14 +153,14 @@ class _$LoginRequestImpl implements _LoginRequest {
 
 abstract class _LoginRequest implements LoginRequest {
   factory _LoginRequest(
-      {required final String phoneNumber,
+      {required final String phone,
       required final String password}) = _$LoginRequestImpl;
 
   factory _LoginRequest.fromJson(Map<String, dynamic> json) =
       _$LoginRequestImpl.fromJson;
 
   @override
-  String get phoneNumber;
+  String get phone;
   @override
   String get password;
   @override

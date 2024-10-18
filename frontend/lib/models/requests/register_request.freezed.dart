@@ -1,6 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, duplicate_ignore
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'register_request.dart';
@@ -20,9 +20,9 @@ RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RegisterRequest {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get lastname => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   String get password =>
       throw _privateConstructorUsedError; //ignore: invalid_annotation_target
   @JsonKey(name: "password_confirmation")
@@ -41,9 +41,9 @@ abstract class $RegisterRequestCopyWith<$Res> {
       _$RegisterRequestCopyWithImpl<$Res, RegisterRequest>;
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String phoneNumber,
+      {String name,
+      String lastname,
+      String phone,
       String password,
       @JsonKey(name: "password_confirmation") String passwordConfirmation});
 }
@@ -61,24 +61,24 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
+    Object? name = null,
+    Object? lastname = null,
+    Object? phone = null,
     Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -101,9 +101,9 @@ abstract class _$$RegisterRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
-      String phoneNumber,
+      {String name,
+      String lastname,
+      String phone,
       String password,
       @JsonKey(name: "password_confirmation") String passwordConfirmation});
 }
@@ -119,24 +119,24 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? phoneNumber = null,
+    Object? name = null,
+    Object? lastname = null,
+    Object? phone = null,
     Object? password = null,
     Object? passwordConfirmation = null,
   }) {
     return _then(_$RegisterRequestImpl(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      lastname: null == lastname
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -154,9 +154,9 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RegisterRequestImpl implements _RegisterRequest {
   _$RegisterRequestImpl(
-      {required this.firstName,
-      required this.lastName,
-      required this.phoneNumber,
+      {required this.name,
+      required this.lastname,
+      required this.phone,
       required this.password,
       @JsonKey(name: "password_confirmation")
       required this.passwordConfirmation});
@@ -165,11 +165,11 @@ class _$RegisterRequestImpl implements _RegisterRequest {
       _$$RegisterRequestImplFromJson(json);
 
   @override
-  final String firstName;
+  final String name;
   @override
-  final String lastName;
+  final String lastname;
   @override
-  final String phoneNumber;
+  final String phone;
   @override
   final String password;
 //ignore: invalid_annotation_target
@@ -179,7 +179,7 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
   @override
   String toString() {
-    return 'RegisterRequest(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, password: $password, passwordConfirmation: $passwordConfirmation)';
+    return 'RegisterRequest(name: $name, lastname: $lastname, phone: $phone, password: $password, passwordConfirmation: $passwordConfirmation)';
   }
 
   @override
@@ -187,12 +187,10 @@ class _$RegisterRequestImpl implements _RegisterRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegisterRequestImpl &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.lastname, lastname) ||
+                other.lastname == lastname) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.passwordConfirmation, passwordConfirmation) ||
@@ -201,8 +199,8 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, phoneNumber,
-      password, passwordConfirmation);
+  int get hashCode => Object.hash(
+      runtimeType, name, lastname, phone, password, passwordConfirmation);
 
   @JsonKey(ignore: true)
   @override
@@ -221,9 +219,9 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
 abstract class _RegisterRequest implements RegisterRequest {
   factory _RegisterRequest(
-      {required final String firstName,
-      required final String lastName,
-      required final String phoneNumber,
+      {required final String name,
+      required final String lastname,
+      required final String phone,
       required final String password,
       @JsonKey(name: "password_confirmation")
       required final String passwordConfirmation}) = _$RegisterRequestImpl;
@@ -232,11 +230,11 @@ abstract class _RegisterRequest implements RegisterRequest {
       _$RegisterRequestImpl.fromJson;
 
   @override
-  String get firstName;
+  String get name;
   @override
-  String get lastName;
+  String get lastname;
   @override
-  String get phoneNumber;
+  String get phone;
   @override
   String get password;
   @override //ignore: invalid_annotation_target
