@@ -52,7 +52,6 @@ class LoginScreen extends StatelessWidget {
         return await cubit.signIn(data);
       },
       onSignup: (data) async {
-        print('onSignup called with data: $data');
         final name = data.additionalSignupData!['name']!;
         final lastname = data.additionalSignupData!['lastname']!;
         final result = await cubit.signUp(

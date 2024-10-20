@@ -60,11 +60,11 @@ class AppResponse<T> extends Equatable {
     T Function(Object? json) fromJsonT,
   ) {
     return AppResponse(
-      success: json['success'] ?? false, // Default to false if null
+      success: json['success'] ?? false,
       message: json['message'] ?? '',
       statusCode: json['statusCode'] ?? 400,
       statusMessage: json['statusMessage'] ?? '',
-      data: json['data'] != null ? fromJsonT(json['data']) : null,
+      data: fromJsonT(json),
     );
   }
 
