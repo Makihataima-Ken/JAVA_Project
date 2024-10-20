@@ -112,3 +112,23 @@ test('admin_login_valid_input_test', function () {
 
     //$response->dump();
 });
+
+// login 5th test
+test('login_empty_fields_test', function () {
+
+    // Create a user
+    $user = User::factory()->create([
+        'phone' => '1234567890', 
+        'password' => bcrypt('validpassword'),  // Encrypt password
+    ]);
+
+    /// Attempt login with a phone number that doesn't exist
+    $response = $this->postJson('/api/auth/login', [
+        'phone' => ' ',  
+        'password' => ' ',
+    ]);
+
+    $response->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+
+});
+
