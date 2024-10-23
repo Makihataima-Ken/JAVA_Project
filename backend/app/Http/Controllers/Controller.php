@@ -5,7 +5,15 @@ use Illuminate\Http\JsonResponse;
 
 
 abstract class Controller 
-{
+{   
+    /**
+     * send pass rresponse
+     * @param $success
+     * @param $message
+     * @param $data
+     * @param $statuscode
+     * @return JsonResponse
+     */
     public function pass($success,$message,$data=null,$statuscode):JsonResponse
     {
         return response()->json([
@@ -15,6 +23,14 @@ abstract class Controller
         ],$statuscode);
     }
 
+    /**
+     * send pass rresponse
+     * @param $success
+     * @param $message
+     * @param $errors
+     * @param $statuscode
+     * @return JsonResponse
+     */
     public function error($success,$message,$errors=null,$statuscode):JsonResponse
     {
         return response()->json([

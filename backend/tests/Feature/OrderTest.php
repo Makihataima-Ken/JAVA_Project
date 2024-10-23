@@ -154,3 +154,34 @@ test('users_order_list', function () {
     ]);
 });
 
+//5th test
+test('users_order_list_2', function () {
+
+    // Create a user and authenticate
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    //test orders
+    $order=Order::factory()->create(['user_id'=>$user->id]);
+    $order2=Order::factory()->create(['user_id'=>2]);
+
+    //request to see orders
+    $response = $this->get('/api/user_orders');
+
+    //make sure the respone is working
+    $response->assertStatus(JsonResponse::HTTP_OK)
+    ->assertJson([
+        'message' => 'My Orders',
+        'orders' =>[[
+            'user_id' => $user->id,
+            'university' => $order->university,
+            'major' => $order->major,
+            'type' => $order->type,
+            'description' => $order->description,
+            'deadline' => $order->deadline,
+            'status' => 'pending',
+        ],
+    ],
+    ]);
+});
+

@@ -17,7 +17,6 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>fake()->name(),
             'university'=>fake()->name(),
             'major'=>fake()->name(),
             'type'=>fake()->name(),
