@@ -28,19 +28,19 @@ class LoginUserCubit extends Cubit<LoginUserState> {
       final response = await _authRepository.login(
         LoginRequest(phone: data.name, password: data.password),
       );
-      print('Login response: ${response.toString()}');
       if (response.success) {
-        await _tokenStorage.saveToken(response.data!.token);
-        _authBloc.add(Authenticated(
-          isAuthenticated: true,
-          token: response.data!.token,
-          user: response.data!.user,
-        ));
-        return null;
+        if (response.data != null && response.data!.token.isNotEmpty) {
+          await _tokenStorage.saveToken(response.data!.token);
+          _authBloc.add(Authenticated(
+            isAuthenticated: true,
+            token: response.data!.token,
+            user: response.data!.user,
+          ));
+          return null;
+        }
       }
       return response.message;
     } catch (e) {
-      print('Login error: $e');
       return 'An error occurred during login';
     }
   }
@@ -56,20 +56,21 @@ class LoginUserCubit extends Cubit<LoginUserState> {
           passwordConfirmation: data.password!,
         ),
       );
-      print('Register response: ${response.message} - ${response.data}');
+
       if (response.success) {
-        await _tokenStorage.saveToken(response.data!.token);
-        _authBloc.add(Authenticated(
-          isAuthenticated: true,
-          token: response.data!.token,
-          user: response.data!.user,
-        ));
-        return null;
+        if (response.data != null && response.data!.token.isNotEmpty) {
+          await _tokenStorage.saveToken(response.data!.token);
+          _authBloc.add(Authenticated(
+            isAuthenticated: true,
+            token: response.data!.token,
+            user: response.data!.user,
+          ));
+          return null;
+        }
       }
       return response.message;
     } catch (e) {
-      print('Signup error: $e');
-      return 'An error occurred during signup'; 
+      return 'An error occurred during signup';
     }
   }
 

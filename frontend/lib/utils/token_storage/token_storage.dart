@@ -8,7 +8,8 @@ class TokenStorage {
   }
 
   Future<String?> getToken() async {
-    return await _storage.read(key: 'jwt_token');
+    final token = await _storage.read(key: 'jwt_token');
+    return token;
   }
 
   Future<void> deleteToken() async {

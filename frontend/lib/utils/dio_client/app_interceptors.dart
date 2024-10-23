@@ -45,7 +45,6 @@ class AppInterceptors extends Interceptor {
     if (err.response?.statusCode == 401) {
       // Handle token expiration or unauthorized errors
       // Optionally refresh token or trigger a logout
-      print('401 Unauthorized - Token may have expired');
       // You could add token refresh logic or logout handling here
     }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'register_request.freezed.dart';
@@ -10,7 +12,6 @@ class RegisterRequest with _$RegisterRequest {
     required String lastname,
     required String phone,
     required String password,
-    //ignore: invalid_annotation_target
     @JsonKey(name: "password_confirmation")
     required String passwordConfirmation,
   }) = _RegisterRequest;

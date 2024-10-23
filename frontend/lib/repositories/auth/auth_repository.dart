@@ -3,7 +3,7 @@ import "package:frontend/models/models.dart";
 import "package:frontend/models/requests/requests.dart";
 import 'package:frontend/repositories/auth/base_auth_repository.dart';
 import "package:frontend/repositories/core/endpoints.dart";
-import "package:frontend/utils/dio_client/dio_client.dart";
+import "package:frontend/utils/utils.dart";
 
 class AuthRepository extends BaseAuthRepository {
   AuthRepository({
@@ -19,11 +19,19 @@ class AuthRepository extends BaseAuthRepository {
       data: request.toJson(),
     );
 
-    print('Raw login response: ${response.data}');
-
     return AppResponse<AuthUser?>.fromJson(
       response.data,
-      (dynamic json) => json != null ? AuthUser.fromJson(json) : null,
+      (dynamic json) {
+        if (json != null) {
+          return AuthUser(
+            user: extractUserFromJson(json['user']),
+            token: json['access_token'],
+            tokenType: json['token_type'],
+            expiresIn: json['expires_in'],
+          );
+        }
+        return null;
+      },
     );
   }
 
@@ -43,7 +51,17 @@ class AuthRepository extends BaseAuthRepository {
 
     return AppResponse<AuthUser?>.fromJson(
       response.data,
-      (dynamic json) => json != null ? AuthUser.fromJson(json) : null,
+      (dynamic json) {
+        if (json != null && json is Map<String, dynamic>) {
+          return AuthUser(
+            user: extractUserFromJson(json['user']),
+            token: response.data['access_token'] ?? '',
+            tokenType: response.data['token_type'] ?? '',
+            expiresIn: response.data['expires_in'] ?? 0,
+          );
+        }
+        return null;
+      },
     );
   }
 }
