@@ -59,7 +59,11 @@ class OrderController extends Controller
         return response()->json(['message'=>'order canceled']);
     }
 
-    public function user_posts():JsonResponse
+    /**
+     * show orders
+     * @return JsonResponse
+     */
+    public function user_orders():JsonResponse
     {
         $user=Auth::user();
         $user_orders=Order::where('user_id',$user->id)->get();
