@@ -58,4 +58,12 @@ class OrderController extends Controller
         $order->delete();
         return response()->json(['message'=>'order canceled']);
     }
+
+    public function user_posts():JsonResponse
+    {
+        $user=Auth::user();
+        $user_orders=Order::where('user_id',$user->id)->get();
+        return response()->json(['message'=>'My Orders','orders'=>$user_orders],200);
+
+    }
 }
