@@ -43,7 +43,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        return response()->json(['message'=>'added an order','order'=>$order],201);
+        return $this->send('added an order',$order,201);
 
     }
 

@@ -28,8 +28,9 @@ test('order_fruition_no_file', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
     ->assertJson([
+        'success'=>true,
         'message' => 'added an order',
-        'order' => [
+        'data' => [
             'university' => 'Damas',
             'major' => 'med',
             'type' => 'grad pro',
@@ -87,8 +88,9 @@ test('order_fruition_with_file', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
     ->assertJson([
+        'success'=>true,
         'message' => 'added an order',
-        'order' => [
+        'data' => [
             'university' => 'Damas',
             'major' => 'med',
             'type' => 'grad pro',

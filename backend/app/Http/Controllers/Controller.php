@@ -8,16 +8,15 @@ abstract class Controller
 {   
     /**
      * send pass rresponse
-     * @param $success
      * @param $message
      * @param $data
      * @param $statuscode
      * @return JsonResponse
      */
-    public function pass($success,$message,$data=null,$statuscode):JsonResponse
+    public function send($message,$data=null,$statuscode):JsonResponse
     {
         return response()->json([
-            'success'=>$success,
+            'success'=>true,
             'message'=>$message,
             'data'=>$data,
         ],$statuscode);
@@ -25,16 +24,15 @@ abstract class Controller
 
     /**
      * send pass rresponse
-     * @param $success
      * @param $message
      * @param $errors
      * @param $statuscode
      * @return JsonResponse
      */
-    public function error($success,$message,$errors=null,$statuscode):JsonResponse
+    public function error($message,$errors=null,$statuscode):JsonResponse
     {
         return response()->json([
-            'success'=>$success,
+            'success'=>false,
             'message'=>$message,
             'errors'=>$errors,
         ],$statuscode);
