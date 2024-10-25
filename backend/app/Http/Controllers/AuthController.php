@@ -30,10 +30,7 @@ class AuthController extends Controller
         
         //wrong input
         if ($validator->fails()) {
-            return response()->json([
-                            'success' => false,
-                            'message' => 'Validation errors',
-                            'errors' => $validator->errors()], 400);
+            return $this->error('Validation errors',$validator->errors(), 400);
         }
 
         //register user
