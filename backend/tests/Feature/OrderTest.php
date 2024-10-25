@@ -134,7 +134,7 @@ test('users_order_list', function () {
     $response->assertStatus(JsonResponse::HTTP_OK)
     ->assertJson([
         'message' => 'My Orders',
-        'orders' =>[[
+        'data' =>[[
             'user_id' => $user->id,
             'university' => $order->university,
             'major' => $order->major,
@@ -174,7 +174,7 @@ test('users_order_list_2', function () {
     $response->assertStatus(JsonResponse::HTTP_OK)
     ->assertJson([
         'message' => 'My Orders',
-        'orders' =>[[
+        'data' =>[[
             'user_id' => $user->id,
             'university' => $order->university,
             'major' => $order->major,
