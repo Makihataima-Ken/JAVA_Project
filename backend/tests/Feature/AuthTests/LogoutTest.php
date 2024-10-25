@@ -12,7 +12,7 @@ test('logout_test', function () {
     Auth::shouldReceive('logout')->once();
 
     // Call the logout method
-    $response = $this->postJson('/api/auth/logout'); // Adjust the route as necessary
+    $response = $this->postJson('/api/auth/logout'); 
 
     // Assert the response
     $response->assertStatus(200)

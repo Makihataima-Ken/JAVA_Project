@@ -111,7 +111,7 @@ class AuthController extends Controller
      */
     public function profile():JsonResponse
     {
-        return response()->json(Auth::user());
+        return $this->send('User Profile',Auth::user(),200);
     }
 
     /**
@@ -121,6 +121,6 @@ class AuthController extends Controller
     public function logout():JsonResponse
     {
         Auth::logout();
-        return response()->json(['message'=>'logged out successfully']);
+        return $this->send('logged out successfully',null,200);
     }
 }

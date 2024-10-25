@@ -13,7 +13,7 @@ abstract class Controller
      * @param $statuscode
      * @return JsonResponse
      */
-    public function send($message,$data=null,$statuscode):JsonResponse
+    public function send($message,$data,$statuscode):JsonResponse
     {
         return response()->json([
             'success'=>true,
@@ -29,7 +29,7 @@ abstract class Controller
      * @param $statuscode
      * @return JsonResponse
      */
-    public function error($message,$errors=null,$statuscode):JsonResponse
+    public function error($message,$errors,$statuscode):JsonResponse
     {
         return response()->json([
             'success'=>false,
