@@ -12,4 +12,7 @@ class Endpoints {
   /// User
 
   static const getUsers = "$_apiVersion/user";
+
+  /// Orders
+  static const order = "";
 }
