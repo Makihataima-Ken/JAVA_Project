@@ -22,9 +22,9 @@ class AuthController extends Controller
     {   
         //validation
         $validator = Validator::make($request->all(), [
-            'name'=>'required|string',
-            'lastname'=>'required|string',
-            'phone'=>'required|string|min:10|max:10|unique:users,phone',
+            'first_name'=>'required|string',
+            'last_name'=>'required|string',
+            'phone_number'=>'required|string|min:10|max:10|unique:users,phone',
             'password' => 'required|string|confirmed|min:8',
         ]);
         
@@ -54,7 +54,7 @@ class AuthController extends Controller
     {
         //validation
         $validator = Validator::make($request->all(), [
-            'phone'=>'required|string|exists:users,phone',
+            'phone_number'=>'required|string|exists:users,phone_number',
             'password' => 'required|string|min:8',
         ]);
         //wrong input
@@ -62,7 +62,7 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         // Authentication attempt
-        if(!$token=JWTAuth::attempt(['phone' => $request->phone, 'password' => $request->password]))
+        if(!$token=JWTAuth::attempt(['phone_number' => $request->phone_number, 'password' => $request->password]))
         {
         return response()->json(['error'=>'unauthorized'],401);
         }

@@ -23,7 +23,7 @@ class OrderController extends Controller
             'university' => 'required|string|max:255',
             'major' => 'required|string',
             'type' => 'required|string',
-            'description'=>'required|longtext',
+            'description'=>'required|string|max:255',
             'deadline'=>'required|string',
             'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
         ]);
