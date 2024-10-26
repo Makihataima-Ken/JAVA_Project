@@ -23,7 +23,7 @@ class OrderController extends Controller
             'university' => 'required|string|max:255',
             'major' => 'required|string',
             'type' => 'required|string',
-            'description'=>'required|string|max:255',
+            'description'=>'required|longtext',
             'deadline'=>'required|string',
             'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
         ]);
@@ -43,7 +43,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        return response()->json(['message'=>'added an order','order'=>$order],201);
+        return $this->send('added an order',$order,201);
 
     }
 
@@ -56,6 +56,18 @@ class OrderController extends Controller
     {
         $order=Order::find($id);
         $order->delete();
-        return response()->json(['message'=>'order canceled']);
+        return $this->send('order canceled',null,200);
+    }
+
+    /**
+     * show orders
+     * @return JsonResponse
+     */
+    public function user_orders():JsonResponse
+    {
+        $user=Auth::user();
+        $user_orders=Order::where('user_id',$user->id)->get();
+        return $this->send('My Orders',$user_orders,200);
+
     }
 }

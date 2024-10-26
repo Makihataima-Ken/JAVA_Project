@@ -9,8 +9,13 @@ test('Profile_test', function () {
 
     // Create a user
     $user = User::factory()->create();
+    $this->actingAs($user);
 
     $response = $this->get('/api/auth/profile');
 
-    $response->assertStatus(JsonResponse::HTTP_OK);
+    $response->assertStatus(JsonResponse::HTTP_OK)
+        ->assertJson([
+            'success'=>true,
+            'message'=>'User Profile',
+        ]);
 });

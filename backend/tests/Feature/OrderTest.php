@@ -28,8 +28,9 @@ test('order_fruition_no_file', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
     ->assertJson([
+        'success'=>true,
         'message' => 'added an order',
-        'order' => [
+        'data' => [
             'university' => 'Damas',
             'major' => 'med',
             'type' => 'grad pro',
@@ -87,8 +88,9 @@ test('order_fruition_with_file', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_CREATED)
     ->assertJson([
+        'success'=>true,
         'message' => 'added an order',
-        'order' => [
+        'data' => [
             'university' => 'Damas',
             'major' => 'med',
             'type' => 'grad pro',
@@ -113,3 +115,75 @@ test('order_fruition_with_file', function () {
     // Assert that the file was stored in the expected directory (e.g., 'public/postimage')
     //Storage::disk('public')->assertExists('uploads/' . $file->hashName());
 });
+
+//4th test
+test('users_order_list', function () {
+
+    // Create a user and authenticate
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    //test orders
+    $order=Order::factory()->create(['user_id'=>$user->id]);
+    $order2=Order::factory()->create(['user_id'=>$user->id]);
+
+    //request to see orders
+    $response = $this->get('/api/user_orders');
+
+    //make sure the respone is working
+    $response->assertStatus(JsonResponse::HTTP_OK)
+    ->assertJson([
+        'message' => 'My Orders',
+        'data' =>[[
+            'user_id' => $user->id,
+            'university' => $order->university,
+            'major' => $order->major,
+            'type' => $order->type,
+            'description' => $order->description,
+            'deadline' => $order->deadline,
+            'status' => 'pending',
+        ],
+        [
+            'user_id' => $user->id,
+            'university' => $order2->university,
+            'major' => $order2->major,
+            'type' => $order2->type,
+            'description' => $order2->description,
+            'deadline' => $order2->deadline,
+            'status' => 'pending',
+        ],
+    ],
+    ]);
+});
+
+//5th test
+test('users_order_list_2', function () {
+
+    // Create a user and authenticate
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    //test orders
+    $order=Order::factory()->create(['user_id'=>$user->id]);
+    $order2=Order::factory()->create(['user_id'=>2]);
+
+    //request to see orders
+    $response = $this->get('/api/user_orders');
+
+    //make sure the respone is working
+    $response->assertStatus(JsonResponse::HTTP_OK)
+    ->assertJson([
+        'message' => 'My Orders',
+        'data' =>[[
+            'user_id' => $user->id,
+            'university' => $order->university,
+            'major' => $order->major,
+            'type' => $order->type,
+            'description' => $order->description,
+            'deadline' => $order->deadline,
+            'status' => 'pending',
+        ],
+    ],
+    ]);
+});
+

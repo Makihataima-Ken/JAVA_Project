@@ -20,9 +20,9 @@ class OrderFactory extends Factory
             'university'=>fake()->name(),
             'major'=>fake()->name(),
             'type'=>fake()->name(),
-            'description'=>fake()->name(),
-            'deadline'=>fake()->name(),
-            'status'=>fake()->name(),
+            'description'=>fake()->text(),
+            'deadline'=>fake()->date(),
+            'status'=>'pending',
             'file_path'=>fake()->filePath(),
         ];
     }
