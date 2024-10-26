@@ -25,3 +25,15 @@ Map<String, dynamic> _$$OrderEntityImplToJson(_$OrderEntityImpl instance) =>
       'description': instance.orderDescription,
       'deadline': instance.deadline,
     };
+
+_$NewOrderImpl _$$NewOrderImplFromJson(Map<String, dynamic> json) =>
+    _$NewOrderImpl(
+      orderCreatedAt: json['created_at'] as String,
+      order: OrderEntity.fromJson(json['order'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$NewOrderImplToJson(_$NewOrderImpl instance) =>
+    <String, dynamic>{
+      'created_at': instance.orderCreatedAt,
+      'order': instance.order,
+    };

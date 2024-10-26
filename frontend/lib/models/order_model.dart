@@ -21,3 +21,14 @@ class OrderEntity with _$OrderEntity {
   factory OrderEntity.fromJson(Map<String, dynamic> json) =>
       _$OrderEntityFromJson(json);
 }
+
+@freezed
+class NewOrder with _$NewOrder {
+  factory NewOrder({
+    @JsonKey(name: 'created_at') required String orderCreatedAt,
+    @JsonKey(name: 'order') required OrderEntity order,
+  }) = _NewOrder;
+
+  factory NewOrder.fromJson(Map<String, dynamic> json) =>
+      _$NewOrderFromJson(json);
+}

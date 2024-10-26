@@ -13,17 +13,23 @@ class OrderRepository extends BaseOrderRepository {
   final Dio _dioClient;
 
   @override
-  Future<AppResponse<OrderEntity?>> uploadOrder(
-      UploadOrderRequest request) async {
+  Future<AppResponse<NewOrder?>> uploadOrder(UploadOrderRequest request) async {
     final response = await _dioClient.post(
       Endpoints.order,
       data: request.toJson(),
     );
 
-    return AppResponse<OrderEntity?>.fromJson(response.data, (dynamic json) {
-      if (json != null) {
-        return;
-      }
-    });
+    return AppResponse<NewOrder?>.fromJson(
+      response.data,
+      (dynamic json) {
+        if (json != null) {
+          return NewOrder(
+            orderCreatedAt: json['created_at'],
+            order: json['order'],
+          );
+        }
+        return null;
+      },
+    );
   }
 }

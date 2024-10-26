@@ -298,3 +298,183 @@ abstract class _OrderEntity implements OrderEntity {
   _$$OrderEntityImplCopyWith<_$OrderEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+NewOrder _$NewOrderFromJson(Map<String, dynamic> json) {
+  return _NewOrder.fromJson(json);
+}
+
+/// @nodoc
+mixin _$NewOrder {
+  @JsonKey(name: 'created_at')
+  String get orderCreatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order')
+  OrderEntity get order => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $NewOrderCopyWith<NewOrder> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NewOrderCopyWith<$Res> {
+  factory $NewOrderCopyWith(NewOrder value, $Res Function(NewOrder) then) =
+      _$NewOrderCopyWithImpl<$Res, NewOrder>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'created_at') String orderCreatedAt,
+      @JsonKey(name: 'order') OrderEntity order});
+
+  $OrderEntityCopyWith<$Res> get order;
+}
+
+/// @nodoc
+class _$NewOrderCopyWithImpl<$Res, $Val extends NewOrder>
+    implements $NewOrderCopyWith<$Res> {
+  _$NewOrderCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderCreatedAt = null,
+    Object? order = null,
+  }) {
+    return _then(_value.copyWith(
+      orderCreatedAt: null == orderCreatedAt
+          ? _value.orderCreatedAt
+          : orderCreatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as OrderEntity,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderEntityCopyWith<$Res> get order {
+    return $OrderEntityCopyWith<$Res>(_value.order, (value) {
+      return _then(_value.copyWith(order: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$NewOrderImplCopyWith<$Res>
+    implements $NewOrderCopyWith<$Res> {
+  factory _$$NewOrderImplCopyWith(
+          _$NewOrderImpl value, $Res Function(_$NewOrderImpl) then) =
+      __$$NewOrderImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'created_at') String orderCreatedAt,
+      @JsonKey(name: 'order') OrderEntity order});
+
+  @override
+  $OrderEntityCopyWith<$Res> get order;
+}
+
+/// @nodoc
+class __$$NewOrderImplCopyWithImpl<$Res>
+    extends _$NewOrderCopyWithImpl<$Res, _$NewOrderImpl>
+    implements _$$NewOrderImplCopyWith<$Res> {
+  __$$NewOrderImplCopyWithImpl(
+      _$NewOrderImpl _value, $Res Function(_$NewOrderImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderCreatedAt = null,
+    Object? order = null,
+  }) {
+    return _then(_$NewOrderImpl(
+      orderCreatedAt: null == orderCreatedAt
+          ? _value.orderCreatedAt
+          : orderCreatedAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as OrderEntity,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$NewOrderImpl implements _NewOrder {
+  _$NewOrderImpl(
+      {@JsonKey(name: 'created_at') required this.orderCreatedAt,
+      @JsonKey(name: 'order') required this.order});
+
+  factory _$NewOrderImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NewOrderImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'created_at')
+  final String orderCreatedAt;
+  @override
+  @JsonKey(name: 'order')
+  final OrderEntity order;
+
+  @override
+  String toString() {
+    return 'NewOrder(orderCreatedAt: $orderCreatedAt, order: $order)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NewOrderImpl &&
+            (identical(other.orderCreatedAt, orderCreatedAt) ||
+                other.orderCreatedAt == orderCreatedAt) &&
+            (identical(other.order, order) || other.order == order));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, orderCreatedAt, order);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NewOrderImplCopyWith<_$NewOrderImpl> get copyWith =>
+      __$$NewOrderImplCopyWithImpl<_$NewOrderImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NewOrderImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _NewOrder implements NewOrder {
+  factory _NewOrder(
+          {@JsonKey(name: 'created_at') required final String orderCreatedAt,
+          @JsonKey(name: 'order') required final OrderEntity order}) =
+      _$NewOrderImpl;
+
+  factory _NewOrder.fromJson(Map<String, dynamic> json) =
+      _$NewOrderImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'created_at')
+  String get orderCreatedAt;
+  @override
+  @JsonKey(name: 'order')
+  OrderEntity get order;
+  @override
+  @JsonKey(ignore: true)
+  _$$NewOrderImplCopyWith<_$NewOrderImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
