@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('deadline');
             $table->string('user_id')->nullable();
             $table->string('status')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }
