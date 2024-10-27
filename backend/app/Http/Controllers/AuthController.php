@@ -95,11 +95,11 @@ class AuthController extends Controller
             foreach ($orders as $order) {
 
                 $orders_preview[]=[
-                    'id'=>$user->id,
-                    'user_id'=>$user->user_id,
-                    'university'=>$user->university,
-                    'major'=>$user->major,
-                    'type'=>$user->type,
+                    'id'=>$order->id,
+                    'user_id'=>$order->user_id,
+                    'university'=>$order->university,
+                    'major'=>$order->major,
+                    'type'=>$order->type,
                 ];
             }
             $data[]=$orders_preview;

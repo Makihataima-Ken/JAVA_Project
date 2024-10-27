@@ -44,8 +44,10 @@ test('login_valid_input_test', function () {
 
     $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJson([
-                'token_type'=>'bearer',
-                'expires_in'=>Auth::factory()->getTTl()*60,
+                'data'=>[
+                    'token_type'=>'bearer',
+                    'expires_in'=>Auth::factory()->getTTl()*60
+                    ]
              ]);
 });
 
@@ -78,6 +80,8 @@ test('admin_login_valid_input_test', function () {
         'usertype'=>'admin',
     ]);
 
+    $this->actingAs($user);
+
     $order = Order::factory()->create([
         'user_id' => $user->id,
     ]);
@@ -93,16 +97,17 @@ test('admin_login_valid_input_test', function () {
             ->assertJson([
                 'success' => true,
                 'message'=>'logged in successfully',
-                'token_type'=>'bearer',
-                'expires_in'=>Auth::factory()->getTTl()*60,
-                'orders'=> [[            
-                            'university' => $order->university,
-                            'major' => $order->major,
-                            'type' => $order->type,
-                            'description'=> $order->description,
-                            'deadline'=>$order->deadline,
-                            'user_id' => $user->id,
-                ],],
+                'data'=>[
+                    'token_type'=>'bearer',
+                    'expires_in'=>Auth::factory()->getTTl()*60,
+                    'orders_preview'=> [[
+                        'id'=>$order->id,
+                        'user_id' => $user->id,            
+                        'university' => $order->university,
+                        'major' => $order->major,
+                        'type' => $order->type
+                    ],],
+                ]
              ]);
 
     //$response->dump();
