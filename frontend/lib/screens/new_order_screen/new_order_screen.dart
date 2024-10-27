@@ -21,11 +21,11 @@ class NewOrderScreenState extends State<NewOrderScreen> {
   // Dropdown options
   final List<String> universityOptions = [
     '7mmodeh'
-  ]; // Add university options here
-  final List<String> majorOptions = ['7mmodeh']; // Add major options here
+  ]; 
+  final List<String> majorOptions = ['7mmodeh']; 
   final List<String> orderTypeOptions = [
     '7mmodeh'
-  ]; // Add order type options here
+  ]; 
 
   @override
   Widget build(BuildContext context) {
