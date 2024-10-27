@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Auth\RegisterController;
+
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 //Authentication process
 Route::group(['prefix'=>'auth'],function(){
-        Route::post('/register',[AuthController::class,'register']);
-        Route::post('/login',[AuthController::class,'login']);
-        Route::get('/profile',[AuthController::class,'profile']);
-        Route::post('/logout',[AuthController::class,'logout']);
+        Route::post('/register',[RegisterController::class,'register']);
+        Route::post('/login',[LoginController::class,'login']);
+        Route::get('/profile',[ProfileController::class,'profile']);
+        Route::post('/logout',[LogoutController::class,'logout']);
 });
 
 //Order procedures
