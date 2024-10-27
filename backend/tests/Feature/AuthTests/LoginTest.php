@@ -13,13 +13,13 @@ test('login_invalid_phone_test', function () {
 
     // Create a user
     $user = User::factory()->create([
-        'phone' => '1234567890', 
+        'phone_number' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
 
     /// Attempt login with a phone number that doesn't exist
     $response = $this->postJson('/api/auth/login', [
-        'phone' => '0987654321',  // Non-existent phone
+        'phone_number' => '0987654321',  // Non-existent phone
         'password' => 'validpassword',
     ]);
 
@@ -32,20 +32,22 @@ test('login_valid_input_test', function () {
 
     // Create a user
     $user = User::factory()->create([
-        'phone' => '1234567890', 
+        'phone_number' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
 
     /// Attempt login with a phone number that doesn't exist
     $response = $this->postJson('/api/auth/login', [
-        'phone' => '1234567890',  
+        'phone_number' => '1234567890',  
         'password' => 'validpassword',
     ]);
 
     $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJson([
-                'token_type'=>'bearer',
-                'expires_in'=>Auth::factory()->getTTl()*60,
+                'data'=>[
+                    'token_type'=>'bearer',
+                    'expires_in'=>Auth::factory()->getTTl()*60
+                    ]
              ]);
 });
 
@@ -54,13 +56,13 @@ test('login_invalid_password_test', function () {
 
     // Create a user
     $user = User::factory()->create([
-        'phone' => '1234567890', 
+        'phone_number' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
 
     /// Attempt login with a phone number that doesn't exist
     $response = $this->postJson('/api/auth/login', [
-        'phone' => '1234567890',  
+        'phone_number' => '1234567890',  
         'password' => 'invalidpassword', //wrong password
     ]);
 
@@ -73,24 +75,21 @@ test('admin_login_valid_input_test', function () {
 
     // Create a user
     $user = User::factory()->create([
-        'phone' => '1234567890', 
+        'phone_number' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
         'usertype'=>'admin',
     ]);
 
-    $order = Order::create([
+    $this->actingAs($user);
+
+    $order = Order::factory()->create([
         'user_id' => $user->id,
-        'university' => 'Damas',
-        'major' => 'med',
-        'type' => 'grad pro',
-        'description'=>'smth smth',
-        'deadline'=>'1/8/2024',
     ]);
 
 
     /// Attempt login with a phone number that doesn't exist
     $response = $this->postJson('/api/auth/login', [
-        'phone' => '1234567890',  
+        'phone_number' => '1234567890',  
         'password' => 'validpassword',
     ]);
 
@@ -98,16 +97,17 @@ test('admin_login_valid_input_test', function () {
             ->assertJson([
                 'success' => true,
                 'message'=>'logged in successfully',
-                'token_type'=>'bearer',
-                'expires_in'=>Auth::factory()->getTTl()*60,
-                'orders'=> [[            
-                            'university' => 'Damas',
-                            'major' => 'med',
-                            'type' => 'grad pro',
-                            'description'=>'smth smth',
-                            'deadline'=>'1/8/2024',
-                            'user_id' => $user->id,
-                ],],
+                'data'=>[
+                    'token_type'=>'bearer',
+                    'expires_in'=>Auth::factory()->getTTl()*60,
+                    'orders_preview'=> [[
+                        'id'=>$order->id,
+                        'user_id' => $user->id,            
+                        'university' => $order->university,
+                        'major' => $order->major,
+                        'type' => $order->type
+                    ],],
+                ]
              ]);
 
     //$response->dump();
@@ -118,13 +118,13 @@ test('login_empty_fields_test', function () {
 
     // Create a user
     $user = User::factory()->create([
-        'phone' => '1234567890', 
+        'phone_number' => '1234567890', 
         'password' => bcrypt('validpassword'),  // Encrypt password
     ]);
 
     /// Attempt login with a phone number that doesn't exist
     $response = $this->postJson('/api/auth/login', [
-        'phone' => ' ',  
+        'phone_number' => ' ',  
         'password' => ' ',
     ]);
 

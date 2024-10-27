@@ -23,7 +23,7 @@ class OrderController extends Controller
             'university' => 'required|string|max:255',
             'major' => 'required|string',
             'type' => 'required|string',
-            'description'=>'required|longtext',
+            'description'=>'required|string|max:255',
             'deadline'=>'required|string',
             'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
         ]);
@@ -68,6 +68,18 @@ class OrderController extends Controller
         $user=Auth::user();
         $user_orders=Order::where('user_id',$user->id)->get();
         return $this->send('My Orders',$user_orders,200);
+
+    }
+
+    /**
+     * show order's details
+     * @return JsonResponse
+     */
+    public function order_details($id):JsonResponse
+    {
+        
+        $order=Order::find($id)->get();
+        return $this->send('Order Details',$order,200);
 
     }
 }

@@ -2,6 +2,8 @@
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 uses(RefreshDatabase::class);
 
@@ -10,9 +12,9 @@ test('register_valid_input_test', function () {
     
     //sends the test user info
     $response = $this->postJson('/api/auth/register', [
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
-        'phone' => '1234567890',
+        'first_name' => 'J3fr',
+        'last_name' => 'ma7fud',
+        'phone_number' => '1234567890',
         'password' => 'password',
         'password_confirmation' => 'password',
     ]);
@@ -22,16 +24,19 @@ test('register_valid_input_test', function () {
              ->assertJson([
                 'success' => true,
                 'message' => 'Registered successfully',
-                'token_type'=>'bearer',
-                'user' => [
-                    'name' => 'J3fr',
-                    'lastname' => 'ma7fud',
-                    'phone' => '1234567890',
-                 ],
+                'data'=>[
+                    'token_type'=>'bearer',
+                    'expires_in'=>Auth::factory()->getTTl()*60,
+                    'user' => [
+                        'first_name' => 'J3fr',
+                        'last_name' => 'ma7fud',
+                        'phone_number' => '1234567890',
+                     ],
+                ],
              ]);
     //check for presence in database         
     $this->assertDatabaseHas('users', [
-        'phone' => '1234567890',
+        'phone_number' => '1234567890',
     ]);
     
 });
@@ -41,9 +46,9 @@ test('register_invalid_phone_test', function () {
     
     //sends the test user info
     $response = $this->postJson('/api/auth/register', [
-        'name' => 'J3fr',
-        'lastname' => 'ma7fud',
-        'phone' => '123456789',
+        'first_name' => 'J3fr',
+        'last_name' => 'ma7fud',
+        'phone_number' => '123456789',
         'password' => 'password',
         'password_confirmation' => 'password',
     ]);
