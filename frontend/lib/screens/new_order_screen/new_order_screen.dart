@@ -19,13 +19,9 @@ class NewOrderScreenState extends State<NewOrderScreen> {
   final TextEditingController deadlineController = TextEditingController();
 
   // Dropdown options
-  final List<String> universityOptions = [
-    '7mmodeh'
-  ]; 
-  final List<String> majorOptions = ['7mmodeh']; 
-  final List<String> orderTypeOptions = [
-    '7mmodeh'
-  ]; 
+  final List<String> universityOptions = ['7mmodeh'];
+  final List<String> majorOptions = ['7mmodeh'];
+  final List<String> orderTypeOptions = ['7mmodeh'];
 
   @override
   Widget build(BuildContext context) {

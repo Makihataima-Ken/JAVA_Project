@@ -28,7 +28,8 @@ class LoginScreen extends StatelessWidget {
       logo: const AssetImage('assets/images/JAVA_Project.png'),
       additionalSignupFields: [
         UserFormField(
-          keyName: "name",
+          displayName: 'First Name',
+          keyName: "first_name",
           icon: const Icon(Icons.person_2_rounded),
           fieldValidator: (value) {
             if (value == null || value.contains(RegExp(r'\d'))) {
@@ -38,7 +39,8 @@ class LoginScreen extends StatelessWidget {
           },
         ),
         UserFormField(
-          keyName: "lastname",
+          displayName: 'Last Name',
+          keyName: "last_name",
           icon: const Icon(Icons.person_2_rounded),
           fieldValidator: (value) {
             if (value == null || value.contains(RegExp(r'\d'))) {
@@ -52,15 +54,15 @@ class LoginScreen extends StatelessWidget {
         return await cubit.signIn(data);
       },
       onSignup: (data) async {
-        final name = data.additionalSignupData!['name']!;
-        final lastname = data.additionalSignupData!['lastname']!;
+        final name = data.additionalSignupData!['first_name']!;
+        final lastname = data.additionalSignupData!['last_name']!;
         final result = await cubit.signUp(
           SignupData.fromSignupForm(
             name: data.name,
             password: data.password,
             additionalSignupData: {
-              'name': name,
-              'lastname': lastname,
+              'first_name': name,
+              'last_name': lastname,
             },
           ),
         );
