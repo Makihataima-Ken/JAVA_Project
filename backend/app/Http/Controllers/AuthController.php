@@ -80,26 +80,32 @@ class AuthController extends Controller
      */
     public function createNewToken($token,$word,$user,$statusCode):JsonResponse
     {   
-        if($user->usertype=='admin'){
-            return response()->json([
-                'success' => true,
-                'message'=>'logged in successfully',
-                'access_token'=>$token,
-                'token_type'=>'bearer',
-                'expires_in'=>Auth::factory()->getTTl()*60,
-                'user'=>Auth::user(),
-                'orders'=>Order::all(),
-            ],$statusCode);
-        }
-
-        return response()->json([
-            'success' => true,
-            'message'=> $word.' successfully',
+        $message=$word.' successfully';
+        $data=[
             'access_token'=>$token,
             'token_type'=>'bearer',
             'expires_in'=>Auth::factory()->getTTl()*60,
-            'user'=>$user->toArray(),
-        ],$statusCode);
+            'user'=>$user,
+        ];
+        if($user->usertype=='admin'){
+            //intiate a list od all orders
+            $orders=Order::all();
+
+            //take basic info from 'em
+            foreach ($orders as $order) {
+
+                $orders_preview[]=[
+                    'id'=>$user->id,
+                    'user_id'=>$user->user_id,
+                    'university'=>$user->university,
+                    'major'=>$user->major,
+                    'type'=>$user->type,
+                ];
+            }
+            $data[]=$orders_preview;
+        }
+
+        return $this->send($message,$data,$statusCode);
     }
 
     /**
