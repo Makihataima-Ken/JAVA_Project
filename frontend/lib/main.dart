@@ -47,8 +47,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.deepPurple,
           ),
-          initialRoute: SplashScreen.routeName,
+          initialRoute: NewOrderScreen.routeName,
           routes: {
+            NewOrderScreen.routeName: (_) => const NewOrderScreen(),
             SplashScreen.routeName: (_) => const SplashScreen(),
             LoginScreen.routeName: (_) => const LoginScreen(),
             TemporaryScreen.routeName: (_) => const TemporaryScreen(),
