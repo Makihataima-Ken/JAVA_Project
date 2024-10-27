@@ -58,7 +58,7 @@ abstract class Controller
             'user'=>$user,
         ];
         if($user->usertype=='admin'){
-            //intiate a list od all orders
+            //intiate a list of all orders
             $orders=Order::all();
 
             //take basic info from 'em

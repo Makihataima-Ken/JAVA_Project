@@ -182,8 +182,36 @@ test('users_order_list_2', function () {
             'description' => $order->description,
             'deadline' => $order->deadline,
             'status' => 'pending',
-        ],
-    ],
+        ],],
     ]);
 });
 
+//6th test
+test('_order_details_test', function () {
+
+    // Create an order 
+    $order = Order::factory()->create();
+
+    //call the api
+    $response = $this->get('/api/order_details/'.$order->id);
+
+    //make sure the respone is working
+    $response->assertStatus(JsonResponse::HTTP_OK)
+    ->assertJson([
+        'message' => 'Order Details',
+        'data' =>[
+            [
+                'id' => $order->id,
+                'university' => $order->university,
+                'major' => $order->major,
+                'type' => $order->type,
+                'description' => $order->description,
+                'deadline' => $order->deadline,
+                'status' => 'pending',
+                'file_path'=>$order->file_path,
+            ],
+        ],
+    ]);
+
+
+});

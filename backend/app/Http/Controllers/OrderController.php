@@ -70,4 +70,16 @@ class OrderController extends Controller
         return $this->send('My Orders',$user_orders,200);
 
     }
+
+    /**
+     * show order's details
+     * @return JsonResponse
+     */
+    public function order_details($id):JsonResponse
+    {
+        
+        $order=Order::find($id)->get();
+        return $this->send('Order Details',$order,200);
+
+    }
 }
