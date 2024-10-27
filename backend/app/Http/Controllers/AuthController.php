@@ -59,12 +59,12 @@ class AuthController extends Controller
         ]);
         //wrong input
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return $this->send('Invalid Credentials',$validator->errors(), 422);
         }
         // Authentication attempt
         if(!$token=JWTAuth::attempt(['phone_number' => $request->phone_number, 'password' => $request->password]))
         {
-        return response()->json(['error'=>'unauthorized'],401);
+        return $this->send('unauthorized',null,401);
         }
         // Generate token if authentication succeeds
         return $this->createNewToken($token,'logged in',Auth::user(),200);
