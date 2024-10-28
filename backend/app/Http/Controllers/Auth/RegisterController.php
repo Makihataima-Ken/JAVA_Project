@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class RegisterController extends Controller
@@ -35,10 +36,12 @@ class RegisterController extends Controller
         $user=User::create(array_merge($validator->validated(),['password'=>bcrypt($request->password),'usertype'=>'user']));
 
         $user->save();
-
+        try{
         // Generate a JWT token for the user
         $token = JWTAuth::fromUser($user);
-
+        }catch (JWTException $e) {
+            return $this->error('could_not_create_token',$e,'HTTP_INTERNAL_SERVER_ERROR',JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
         return $this->createNewToken($token,'Registered',$user,'HTTP_CREATED',JsonResponse::HTTP_CREATED);
 
     }
