@@ -17,7 +17,7 @@ test('order_fruition_no_file', function () {
     $this->actingAs($user);
 
     //makes a test order
-    $response = $this->postJson('/api/add_order', [
+    $response = $this->postJson('/api/orders/add_order', [
         'university' => 'Damas',
         'major' => 'med',
         'type' => 'grad pro',
@@ -50,7 +50,7 @@ test('cancel_order_fruition_no_file', function () {
     $order = Order::factory()->create();
 
     //cancel test
-    $response = $this->deleteJson('/api/cancel_order/'.$order->id);
+    $response = $this->deleteJson('/api/orders/cancel_order/'.$order->id);
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
@@ -82,7 +82,7 @@ test('order_fruition_with_file', function () {
         'file_path'=>$file,
     ];
     //makes a test order
-    $response = $this->postJson('/api/add_order',$request);
+    $response = $this->postJson('/api/orders/add_order',$request);
 
 
     //make sure the respone is working
@@ -128,7 +128,7 @@ test('users_order_list', function () {
     $order2=Order::factory()->create(['user_id'=>$user->id]);
 
     //request to see orders
-    $response = $this->get('/api/user_orders');
+    $response = $this->get('/api/orders/user_orders');
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
@@ -168,7 +168,7 @@ test('users_order_list_2', function () {
     $order2=Order::factory()->create(['user_id'=>2]);
 
     //request to see orders
-    $response = $this->get('/api/user_orders');
+    $response = $this->get('/api/orders/user_orders');
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
@@ -193,7 +193,7 @@ test('_order_details_test', function () {
     $order = Order::factory()->create();
 
     //call the api
-    $response = $this->get('/api/order_details/'.$order->id);
+    $response = $this->get('/api/orders/order_details/'.$order->id);
 
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
