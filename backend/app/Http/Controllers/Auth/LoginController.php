@@ -27,15 +27,15 @@ class LoginController extends Controller
         ]);
         //wrong input
         if ($validator->fails()) {
-            return $this->error('Invalid Credentials',$validator->errors(), 422);
+            return $this->error('Invalid Credentials',$validator->errors(),'HTTP_UNPROCESSABLE_ENTITY',JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
         }
         // Authentication attempt
         if(!$token=JWTAuth::attempt(['phone_number' => $request->phone_number, 'password' => $request->password]))
         {
-        return $this->error('unauthorized',null,401);
+        return $this->error('unauthorized log in attempt',null,'HTTP_UNAUTHORIZED',JsonResponse::HTTP_UNAUTHORIZED);
         }
         // Generate token if authentication succeeds
-        return $this->createNewToken($token,'logged in',Auth::user(),200);
+        return $this->createNewToken($token,'logged in',Auth::user(),'HTTP_OK',JsonResponse::HTTP_OK);
     }
 
 }

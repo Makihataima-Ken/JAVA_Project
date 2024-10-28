@@ -50,7 +50,7 @@ abstract class Controller
      * @param $statusCode
      * @return JsonResponse
      */
-    public function createNewToken($token,$word,$user,$statusCode):JsonResponse
+    public function createNewToken($token,$word,$user,$statusMessage,$statusCode):JsonResponse
     {   
         $message=$word.' successfully';
         $data=[
@@ -77,6 +77,6 @@ abstract class Controller
             $data[]=$orders_preview;
         }
 
-        return $this->send($message,$data,$statusCode);
+        return $this->send($message,$data,$statusMessage,$statusCode);
     }
 }
