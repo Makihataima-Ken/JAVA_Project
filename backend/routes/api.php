@@ -19,10 +19,12 @@ Route::group(['prefix'=>'auth'],function(){
 });
 
 //Order procedures
-Route::post('/add_order',[OrderController::class,'add_order']);
-Route::delete('/cancel_order/{id}',[OrderController::class,'cancel_order']);
-Route::get('/user_orders',[OrderController::class,'user_orders']); // screen to show all user's orders
-Route::get('/order_details/{id}',[OrderController::class,'order_details']);// have a look on the order
+Route::group(['prefix'=>'orders'],function(){
+        Route::post('/add_order',[OrderController::class,'add_order']);
+        Route::delete('/cancel_order/{id}',[OrderController::class,'cancel_order']);
+        Route::get('/user_orders',[OrderController::class,'user_orders']); // screen to show all user's orders
+        Route::get('/order_details/{id}',[OrderController::class,'order_details']);// have a look on the order
+});
 
 //Admin procedures
 Route::post('/approve_order/{id}',[AdminController::class,'approve_order']);
