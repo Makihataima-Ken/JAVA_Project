@@ -43,7 +43,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        return $this->send('added an order',$order,201);
+        return $this->send('added an order',$order,'HTTP_CREATED',JsonResponse::HTTP_CREATED);
 
     }
 
@@ -56,7 +56,7 @@ class OrderController extends Controller
     {
         $order=Order::find($id);
         $order->delete();
-        return $this->send('order canceled',null,200);
+        return $this->send('order canceled',null,'HTTP_OK',JsonResponse::HTTP_OK);
     }
 
     /**
@@ -67,7 +67,7 @@ class OrderController extends Controller
     {
         $user=Auth::user();
         $user_orders=Order::where('user_id',$user->id)->get();
-        return $this->send('My Orders',$user_orders,200);
+        return $this->send('My Orders',$user_orders,'HTTP_OK',JsonResponse::HTTP_OK);
 
     }
 
@@ -79,7 +79,7 @@ class OrderController extends Controller
     {
         
         $order=Order::find($id)->get();
-        return $this->send('Order Details',$order,200);
+        return $this->send('Order Details',$order,'HTTP_OK',JsonResponse::HTTP_OK);
 
     }
 }

@@ -15,12 +15,13 @@ abstract class Controller
      * @param $statuscode
      * @return JsonResponse
      */
-    public function send($message,$data,$statuscode):JsonResponse
+    public function send($message,$data,$statusMessage,$statuscode):JsonResponse
     {
         return response()->json([
             'success'=>true,
             'message'=>$message,
             'data'=>$data,
+            'status_message'=>$statusMessage,
         ],$statuscode);
     }
 
@@ -31,12 +32,13 @@ abstract class Controller
      * @param $statuscode
      * @return JsonResponse
      */
-    public function error($message,$errors,$statuscode):JsonResponse
+    public function error($message,$errors,$statusMessage,$statuscode):JsonResponse
     {
         return response()->json([
             'success'=>false,
             'message'=>$message,
             'errors'=>$errors,
+            'status_message'=>$statusMessage,
         ],$statuscode);
     }
 
