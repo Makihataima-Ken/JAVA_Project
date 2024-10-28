@@ -64,7 +64,7 @@ class AppResponse<T> extends Equatable {
       message: json['message'] ?? '',
       statusCode: json['statusCode'] ?? 400,
       statusMessage: json['statusMessage'] ?? '',
-      data: fromJsonT(json),
+      data: fromJsonT(json['data']),
     );
   }
 

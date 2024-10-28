@@ -8,10 +8,10 @@ part 'register_request.g.dart';
 @freezed
 class RegisterRequest with _$RegisterRequest {
   factory RegisterRequest({
-    required String name,
-    required String lastname,
-    required String phone,
-    required String password,
+    @JsonKey(name: 'first_name') required String firstName,
+    @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'phone_number') required String phoneNumber,
+    @JsonKey(name: 'password') required String password,
     @JsonKey(name: "password_confirmation")
     required String passwordConfirmation,
   }) = _RegisterRequest;

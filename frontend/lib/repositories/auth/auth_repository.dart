@@ -25,9 +25,9 @@ class AuthRepository extends BaseAuthRepository {
         if (json != null) {
           return AuthUser(
             user: extractUserFromJson(json['user']),
-            token: json['access_token'],
-            tokenType: json['token_type'],
-            expiresIn: json['expires_in'],
+            token: json['access_token'] ?? '',
+            tokenType: json['token_type'] ?? '',
+            expiresIn: json['expires_in'] ?? 0,
           );
         }
         return null;
