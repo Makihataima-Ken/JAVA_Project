@@ -42,7 +42,7 @@ abstract class Controller
         ],$statuscode);
     }
 
-      /**
+    /**
      * token generator
      * @param $token
      * @param $word
@@ -63,20 +63,29 @@ abstract class Controller
             //intiate a list of all orders
             $orders=Order::all();
 
-            //take basic info from 'em
-            foreach ($orders as $order) {
-
-                $orders_preview[]=[
-                    'id'=>$order->id,
-                    'user_id'=>$order->user_id,
-                    'university'=>$order->university,
-                    'major'=>$order->major,
-                    'type'=>$order->type,
-                ];
-            }
-            $data[]=$orders_preview;
+            //add overview to data
+            $data[]=$this->createOrderOverview($orders);
         }
 
         return $this->send($message,$data,$statusMessage,$statusCode);
+    }
+
+    /**
+     * create a list of overviews of order
+     * @param $orders
+     * @return JsonResponse
+     */
+    public function createOrderOverview($orders):array
+    {
+        //take basic info from 'em
+        foreach ($orders as $order) {
+
+            $orders_preview[]=[
+                'id'=>$order->id,
+                'type'=>$order->type,
+                'creation_date'=>$order->created_at,
+            ];
+        }
+        return $orders_preview;
     }
 }
