@@ -28,7 +28,7 @@ class RegisterController extends Controller
         
         //wrong input
         if ($validator->fails()) {
-            return $this->error('Validation errors',$validator->errors(), 400);
+            return $this->error('Validation errors',$validator->errors(), 'HTTP_BAD_REQUEST',JsonResponse::HTTP_BAD_REQUEST);
         }
 
         //register user
@@ -39,7 +39,7 @@ class RegisterController extends Controller
         // Generate a JWT token for the user
         $token = JWTAuth::fromUser($user);
 
-        return $this->createNewToken($token,'Registered',$user,201);
+        return $this->createNewToken($token,'Registered',$user,'HTTP_CREATED',JsonResponse::HTTP_CREATED);
 
     }
 }

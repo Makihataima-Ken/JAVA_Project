@@ -15,6 +15,6 @@ class ProfileController extends Controller
      */
     public function profile():JsonResponse
     {
-        return $this->send('User Profile',Auth::user(),200);
+        return $this->send('User Profile',Auth::user(),'HTTP_OK',JsonResponse::HTTP_OK);
     }
 }

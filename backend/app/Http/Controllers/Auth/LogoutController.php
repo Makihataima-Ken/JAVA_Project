@@ -16,6 +16,6 @@ class LogoutController extends Controller
     public function logout():JsonResponse
     {
         Auth::logout();
-        return $this->send('logged out successfully',null,200);
+        return $this->send('logged out successfully',null,'HTTP_OK',JsonResponse::HTTP_OK);
     }
 }
