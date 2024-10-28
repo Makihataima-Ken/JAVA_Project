@@ -102,9 +102,6 @@ test('admin_login_valid_input_test', function () {
                     'expires_in'=>Auth::factory()->getTTl()*60,
                     'orders_preview'=> [[
                         'id'=>$order->id,
-                        'user_id' => $user->id,            
-                        'university' => $order->university,
-                        'major' => $order->major,
                         'type' => $order->type
                     ],],
                 ]

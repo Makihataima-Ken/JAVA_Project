@@ -135,22 +135,16 @@ test('users_order_list', function () {
     ->assertJson([
         'message' => 'My Orders',
         'data' =>[[
-            'user_id' => $user->id,
-            'university' => $order->university,
-            'major' => $order->major,
+            'id' => $user->id,
             'type' => $order->type,
-            'description' => $order->description,
-            'deadline' => $order->deadline,
             'status' => 'pending',
+            'creation_date'=>$order->created_at,
         ],
         [
-            'user_id' => $user->id,
-            'university' => $order2->university,
-            'major' => $order2->major,
+            'id' => $user->id,
             'type' => $order2->type,
-            'description' => $order2->description,
-            'deadline' => $order2->deadline,
             'status' => 'pending',
+            'creation_date'=>$order->created_at,
         ],
     ],
     ]);
@@ -175,13 +169,10 @@ test('users_order_list_2', function () {
     ->assertJson([
         'message' => 'My Orders',
         'data' =>[[
-            'user_id' => $user->id,
-            'university' => $order->university,
-            'major' => $order->major,
+            'id' => $user->id,
             'type' => $order->type,
-            'description' => $order->description,
-            'deadline' => $order->deadline,
             'status' => 'pending',
+            'creation_date'=>$order->created_at,
         ],],
     ]);
 });

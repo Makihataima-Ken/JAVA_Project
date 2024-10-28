@@ -83,6 +83,7 @@ abstract class Controller
             $orders_preview[]=[
                 'id'=>$order->id,
                 'type'=>$order->type,
+                'status'=>$order->status,
                 'creation_date'=>$order->created_at,
             ];
         }

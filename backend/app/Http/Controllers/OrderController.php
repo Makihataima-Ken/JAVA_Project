@@ -68,7 +68,7 @@ class OrderController extends Controller
         $user=Auth::user();
         $user_orders=Order::where('user_id',$user->id)->get();
         $orders_overview=$this->createOrderOverview($user_orders);
-        return $this->send('My Orders',$user_orders,'HTTP_OK',JsonResponse::HTTP_OK);
+        return $this->send('My Orders',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
 
     }
 
