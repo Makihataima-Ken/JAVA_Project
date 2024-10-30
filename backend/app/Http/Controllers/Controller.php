@@ -64,7 +64,8 @@ abstract class Controller
             $orders=Order::all();
 
             //add overview to data
-            $data[]=$this->createOrderOverview($orders);
+            $orders_overview=$this->createOrderOverview($orders);
+            $data[]=$orders_overview;
         }
 
         return $this->send($message,$data,$statusMessage,$statusCode);
@@ -80,13 +81,13 @@ abstract class Controller
         //take basic info from 'em
         foreach ($orders as $order) {
 
-            $orders_preview[]=[
+            $orders_overview[]=[
                 'id'=>$order->id,
                 'type'=>$order->type,
                 'status'=>$order->status,
                 'creation_date'=>$order->created_at,
             ];
         }
-        return $orders_preview;
+        return $orders_overview;
     }
 }
