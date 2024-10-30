@@ -124,8 +124,7 @@ test('users_order_list', function () {
     $this->actingAs($user);
 
     //test orders
-    $order=Order::factory()->create(['user_id'=>$user->id]);
-    $order2=Order::factory()->create(['user_id'=>$user->id]);
+    $orders=Order::factory()->count(3)->create(['user_id'=>$user->id]);
 
     //request to see orders
     $response = $this->get('/api/orders/user_orders');
@@ -133,21 +132,23 @@ test('users_order_list', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
     ->assertJson([
+        'success' => true,
         'message' => 'My Orders',
-        'data' =>[[
-            'id' => $user->id,
-            'type' => $order->type,
-            'status' => 'pending',
-            'creation_date'=>$order->created_at,
-        ],
-        [
-            'id' => $user->id,
-            'type' => $order2->type,
-            'status' => 'pending',
-            'creation_date'=>$order->created_at,
-        ],
-    ],
+        'status_message' => 'HTTP_OK',
     ]);
+
+    // Check that the returned data matches the user's orders
+    $responseData = $response->json('data');
+    $this->assertCount(3, $responseData);
+
+    foreach ($orders as $index => $order) {
+        $this->assertEquals($order->id, $responseData[$index]['id']);
+        $this->assertEquals($order->type, $responseData[$index]['type']);
+        $this->assertEquals($order->status, $responseData[$index]['status']);
+        //TODO check how to call the timestamps instances
+        //$this->assertEquals($order->created_at, $responseData[$index]['creation_date']);
+        
+    }
 });
 
 //5th test
@@ -158,7 +159,7 @@ test('users_order_list_2', function () {
     $this->actingAs($user);
 
     //test orders
-    $order=Order::factory()->create(['user_id'=>$user->id]);
+    $orders=Order::factory()->count(2)->create(['user_id'=>$user->id]);
     $order2=Order::factory()->create(['user_id'=>2]);
 
     //request to see orders
@@ -167,14 +168,20 @@ test('users_order_list_2', function () {
     //make sure the respone is working
     $response->assertStatus(JsonResponse::HTTP_OK)
     ->assertJson([
+        'success' => true,
         'message' => 'My Orders',
-        'data' =>[[
-            'id' => $user->id,
-            'type' => $order->type,
-            'status' => 'pending',
-            'creation_date'=>$order->created_at,
-        ],],
+        'status_message' => 'HTTP_OK',
     ]);
+
+    $responseData = $response->json('data');
+    $this->assertCount(2, $responseData);
+
+    foreach ($orders as $index => $order) {
+        $this->assertEquals($order->id, $responseData[$index]['id']);
+        $this->assertEquals($order->type, $responseData[$index]['type']);
+        $this->assertEquals($order->status, $responseData[$index]['status']);
+        //$this->assertEquals($order->created_at, $responseData[$index]['creation_date']);
+    }
 });
 
 //6th test

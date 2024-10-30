@@ -24,6 +24,7 @@ class OrderFactory extends Factory
             'deadline'=>fake()->date(),
             'status'=>'pending',
             'file_path'=>fake()->filePath(),
+            'created_at'=>fake()->time(),
         ];
     }
 }
