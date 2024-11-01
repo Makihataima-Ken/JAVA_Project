@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,19 +15,9 @@ class OrderController extends Controller
      * @param $request 
      * @return JsonResponse
      */
-    public function add_order(Request $request):JsonResponse
+    public function add_order(OrderRequest $request):JsonResponse
     {
         $user=Auth::user();
-
-        // Validate the request data
-        $request->validate([
-            'university' => 'required|string|max:255',
-            'major' => 'required|string',
-            'type' => 'required|string',
-            'description'=>'required|string|max:255',
-            'deadline'=>'required|string',
-            'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
-        ]);
 
         $filePath=null;
 
