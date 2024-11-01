@@ -26,7 +26,7 @@ class Order extends Model
     ];
 
     /**
-     * create a list of overviews of order
+     * create an overview of order
      * @param $orders
      * @return JsonResponse
      */
@@ -34,7 +34,7 @@ class Order extends Model
     {
 
         $orders_overview[]=[
-            
+
             'id'=>$this->id,
             'type'=>$this->type,
             'status'=>$this->status,

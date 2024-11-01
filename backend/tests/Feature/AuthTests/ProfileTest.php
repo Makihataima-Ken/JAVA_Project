@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Auth;
 uses(RefreshDatabase::class);
 test('Profile_test', function () {
 
-    // Create a user
-    $user = User::factory()->create();
-    $this->actingAs($user);
+    //-----------------------------------------------
+    $user = User::factory()->create();// Create a user and authenticate
+    $this->actingAs($user);//imitate a logged in user
+    //------------------------------------------------
 
     $response = $this->get('/api/auth/profile');
 
