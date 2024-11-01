@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,23 +19,13 @@ class RegisterController extends Controller
      * @param $request
      * @return JsonResponse
      */
-    public function register(Request $request):JsonResponse
+    public function register(RegisterRequest $request):JsonResponse
     {   
         //validation
-        $validator = Validator::make($request->all(), [
-            'first_name'=>'required|string',
-            'last_name'=>'required|string',
-            'phone_number'=>'required|string|min:10|max:10|unique:users,phone',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
-        
-        //wrong input
-        if ($validator->fails()) {
-            return $this->error('Validation errors',$validator->errors(), 'HTTP_BAD_REQUEST',JsonResponse::HTTP_BAD_REQUEST);
-        }
+        $validated = $request->validated();
 
         //register user
-        $user=User::create(array_merge($validator->validated(),['password'=>bcrypt($request->password),'usertype'=>'user']));
+        $user=User::create(array_merge($validated,['password'=>bcrypt($request->password),'usertype'=>'user']));
 
         $user->save();
         try{

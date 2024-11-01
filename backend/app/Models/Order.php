@@ -30,7 +30,7 @@ class Order extends Model
      * @param $orders
      * @return JsonResponse
      */
-    public function createOrderOverview():array
+    public function createOrderOverview()
     {
 
         $orders_overview[]=[

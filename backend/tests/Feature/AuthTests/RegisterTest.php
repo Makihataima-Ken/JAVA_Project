@@ -57,7 +57,7 @@ test('register_invalid_phone_test', function () {
     $response->assertStatus(JsonResponse::HTTP_BAD_REQUEST)
             ->assertJson([
                     'success' => false,
-                    'message' => 'Validation errors',
+                    'message' => 'Invalid Credentials',
              ]);
     
 });
