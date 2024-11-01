@@ -76,6 +76,25 @@ test('cancel_order_fruition_no_file', function () {
 });
 
 //3rd test
+test('cancel_order_failed', function () {
+
+    //---------------------------------
+    $order = Order::factory()->create(['status'=>'in progress']);//create a fake order
+    //---------------------------------
+
+    //---------------------------------
+    $response = $this->deleteJson('/api/orders/cancel_order/'.$order->id);//call the api
+    //---------------------------------
+
+    //----------------------------------
+    $response->assertStatus(JsonResponse::HTTP_EXPECTATION_FAILED)// make sure of the result 
+            ->assertJson(['message' => 'can not cancel order']);
+    //----------------------------------        
+
+    ///TODO find a way to assert that database is empty
+});
+
+//4th test
 test('order_fruition_with_file', function () {
 
     //-----------------------------------------------
@@ -137,7 +156,7 @@ test('order_fruition_with_file', function () {
     //Storage::disk('public')->assertExists('uploads/' . $file->hashName());
 });
 
-//4th test
+//5th test
 test('users_order_list', function () {
 
     //-----------------------------------------------
@@ -175,7 +194,7 @@ test('users_order_list', function () {
     }
 });
 
-//5th test
+//6th test
 test('users_order_list_2', function () {
 
     //-----------------------------------------------
@@ -209,7 +228,7 @@ test('users_order_list_2', function () {
     }
 });
 
-//6th test
+//7th test
 test('_order_details_test', function () {
 
     // Create an order 

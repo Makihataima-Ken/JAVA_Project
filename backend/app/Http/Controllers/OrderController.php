@@ -46,8 +46,11 @@ class OrderController extends Controller
     public function cancel_order($id): JsonResponse
     {
         $order=Order::find($id);
-        $order->delete();
-        return $this->send('order canceled',null,'HTTP_OK',JsonResponse::HTTP_OK);
+        if($order->status=='pending'){
+            $order->delete();
+            return $this->send('order canceled',null,'HTTP_OK',JsonResponse::HTTP_OK);
+        }
+        return $this->error('can not cancel order',null,'HTTP_EXPECTATION_FAILED',JsonResponse::HTTP_EXPECTATION_FAILED);
     }
 
     /**
