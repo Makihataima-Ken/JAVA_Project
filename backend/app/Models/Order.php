@@ -24,4 +24,23 @@ class Order extends Model
         'status',
         'file_path',
     ];
+
+    /**
+     * create a list of overviews of order
+     * @param $orders
+     * @return JsonResponse
+     */
+    public function createOrderOverview():array
+    {
+
+        $orders_overview[]=[
+            
+            'id'=>$this->id,
+            'type'=>$this->type,
+            'status'=>$this->status,
+            'creation_date'=>$this->created_at,
+        ];
+        
+        return $orders_overview;
+    }
 }

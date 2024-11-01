@@ -59,12 +59,16 @@ abstract class Controller
             'expires_in'=>Auth::factory()->getTTl()*60,
             'user'=>$user,
         ];
+        
         if($user->usertype=='admin'){
             //intiate a list of all orders
             $orders=Order::all();
 
             //add overview to data
-            $orders_overview=$this->createOrderOverview($orders);
+            foreach($orders as $order)
+            {
+                $orders_overview[]=$order->createOrderOverview();
+            }
             $data[]=$orders_overview;
         }
 
@@ -76,7 +80,7 @@ abstract class Controller
      * @param $orders
      * @return JsonResponse
      */
-    public function createOrderOverview($orders):array
+    /*public function createOrderOverview($orders):array
     {
         //take basic info from 'em
         foreach ($orders as $order) {
@@ -89,5 +93,5 @@ abstract class Controller
             ];
         }
         return $orders_overview;
-    }
+    }/*/
 }
