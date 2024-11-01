@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -42,7 +43,15 @@ class RegisterController extends Controller
         }catch (JWTException $e) {
             return $this->error('could_not_create_token',$e,'HTTP_INTERNAL_SERVER_ERROR',JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
-        return $this->createNewToken($token,'Registered',$user,'HTTP_CREATED',JsonResponse::HTTP_CREATED);
+        // create data package for the UI
+        $data=[
+            'access_token'=>$token,
+            'token_type'=>'bearer',
+            'expires_in'=>Auth::factory()->getTTl()*60,
+            'user'=>$user,
+        ];
+        //send the json response
+        return $this->send('Registered successfully',$data,'HTTP_CREATED',JsonResponse::HTTP_CREATED);
 
     }
 }

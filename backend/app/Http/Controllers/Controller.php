@@ -50,7 +50,7 @@ abstract class Controller
      * @param $statusCode
      * @return JsonResponse
      */
-    public function createNewToken($token,$word,$user,$statusMessage,$statusCode):JsonResponse
+    /*public function createNewToken($token,$word,$user,$statusMessage,$statusCode):JsonResponse
     {   
         $message=$word.' successfully';
         $data=[
@@ -59,7 +59,7 @@ abstract class Controller
             'expires_in'=>Auth::factory()->getTTl()*60,
             'user'=>$user,
         ];
-        
+
         if($user->usertype=='admin'){
             //intiate a list of all orders
             $orders=Order::all();
@@ -73,7 +73,7 @@ abstract class Controller
         }
 
         return $this->send($message,$data,$statusMessage,$statusCode);
-    }
+    }/*/
 
     /**
      * create a list of overviews of order

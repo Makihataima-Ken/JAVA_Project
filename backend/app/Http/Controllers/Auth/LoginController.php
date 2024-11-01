@@ -40,7 +40,13 @@ class LoginController extends Controller
             return $this->error('could_not_create_token',$e,'HTTP_INTERNAL_SERVER_ERROR',JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         // Generate token if authentication succeeds
-        return $this->createNewToken($token,'logged in',Auth::user(),'HTTP_OK',JsonResponse::HTTP_OK);
+        $data=[
+            'access_token'=>$token,
+            'token_type'=>'bearer',
+            'expires_in'=>Auth::factory()->getTTl()*60,
+            'user'=>Auth::user(),
+        ];
+        return $this->send('logged in successfully',$data,'HTTP_OK',JsonResponse::HTTP_OK);
     }
 
 }
