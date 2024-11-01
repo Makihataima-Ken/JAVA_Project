@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\AuthRequests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,17 +19,8 @@ class LoginController extends Controller
      * @param $request
      * @return JsonResponse
      */
-    public function login(Request $request):JsonResponse
+    public function login(LoginRequest $request):JsonResponse
     {
-        //validation
-        $validator = Validator::make($request->all(), [
-            'phone_number'=>'required|string|exists:users,phone_number',
-            'password' => 'required|string|min:8',
-        ]);
-        //wrong input
-        if ($validator->fails()) {
-            return $this->error('Invalid Credentials',$validator->errors(),'HTTP_UNPROCESSABLE_ENTITY',JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-        }
         try{
         // Authentication attempt
         if(!$token=JWTAuth::attempt(['phone_number' => $request->phone_number, 'password' => $request->password]))
