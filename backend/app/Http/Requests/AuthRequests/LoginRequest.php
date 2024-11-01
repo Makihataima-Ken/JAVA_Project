@@ -29,7 +29,10 @@ class LoginRequest extends FormRequest
             'password' => 'required|string|min:8',
         ];
     }
-
+    /**
+     * failed validation response
+     * @param Validator $validator
+     */
     protected function failedValidation(Validator $validator)
     {
         $errors = $validator->errors();
@@ -42,5 +45,15 @@ class LoginRequest extends FormRequest
         ],JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
 
         throw new HttpResponseException($customResponse);
+    }
+    /**
+     * messages for authentication errors
+     */
+    public function messages()
+    {
+        return [
+            'phone_number.required' => 'Please provide your phone number.',
+            'password.required' => 'Your password is required.',
+        ];
     }
 }
