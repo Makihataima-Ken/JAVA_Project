@@ -153,7 +153,6 @@ class NewOrderScreenState extends State<NewOrderScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // Handle form submission here
-                      print("New order submitted!");
                     }
                   },
                   child: const Text('Submit Order'),
