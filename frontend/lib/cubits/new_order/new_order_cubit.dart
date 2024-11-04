@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:frontend/models/models.dart';
@@ -25,7 +23,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     required String orderType,
     required String description,
     required String deadline,
-    File? file,
+    String? filePath,
   }) async {
     emit(const NewOrderState.loading());
 
@@ -36,7 +34,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
         orderType: orderType,
         orderDescription: description,
         deadline: deadline,
-        file: file,
+        filePath: filePath,
       );
 
       final response = await _orderRepository.submitOrder(request);
