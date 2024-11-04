@@ -7,4 +7,3 @@ class NewOrderState with _$NewOrderState {
   const factory NewOrderState.success(NewOrder newOrder) = _Success;
   const factory NewOrderState.failure(String error) = _Failure;
 }
- 
