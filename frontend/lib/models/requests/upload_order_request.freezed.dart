@@ -30,8 +30,10 @@ mixin _$UploadOrderRequest {
   String get orderDescription => throw _privateConstructorUsedError;
   @JsonKey(name: 'deadline')
   String get deadline => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
   String? get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +53,9 @@ abstract class $UploadOrderRequestCopyWith<$Res> {
       @JsonKey(name: 'type') String orderType,
       @JsonKey(name: 'description') String orderDescription,
       @JsonKey(name: 'deadline') String deadline,
-      @JsonKey(includeFromJson: false, includeToJson: false) String? filePath});
+      @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
+      String? filePath,
+      @JsonKey(name: 'status') String status});
 }
 
 /// @nodoc
@@ -73,6 +77,7 @@ class _$UploadOrderRequestCopyWithImpl<$Res, $Val extends UploadOrderRequest>
     Object? orderDescription = null,
     Object? deadline = null,
     Object? filePath = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       universityName: null == universityName
@@ -99,6 +104,10 @@ class _$UploadOrderRequestCopyWithImpl<$Res, $Val extends UploadOrderRequest>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -117,7 +126,9 @@ abstract class _$$UploadOrderRequestImplCopyWith<$Res>
       @JsonKey(name: 'type') String orderType,
       @JsonKey(name: 'description') String orderDescription,
       @JsonKey(name: 'deadline') String deadline,
-      @JsonKey(includeFromJson: false, includeToJson: false) String? filePath});
+      @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
+      String? filePath,
+      @JsonKey(name: 'status') String status});
 }
 
 /// @nodoc
@@ -137,6 +148,7 @@ class __$$UploadOrderRequestImplCopyWithImpl<$Res>
     Object? orderDescription = null,
     Object? deadline = null,
     Object? filePath = freezed,
+    Object? status = null,
   }) {
     return _then(_$UploadOrderRequestImpl(
       universityName: null == universityName
@@ -163,6 +175,10 @@ class __$$UploadOrderRequestImplCopyWithImpl<$Res>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -176,7 +192,9 @@ class _$UploadOrderRequestImpl implements _UploadOrderRequest {
       @JsonKey(name: 'type') required this.orderType,
       @JsonKey(name: 'description') required this.orderDescription,
       @JsonKey(name: 'deadline') required this.deadline,
-      @JsonKey(includeFromJson: false, includeToJson: false) this.filePath});
+      @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
+      this.filePath,
+      @JsonKey(name: 'status') required this.status});
 
   factory _$UploadOrderRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$UploadOrderRequestImplFromJson(json);
@@ -197,12 +215,15 @@ class _$UploadOrderRequestImpl implements _UploadOrderRequest {
   @JsonKey(name: 'deadline')
   final String deadline;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
   final String? filePath;
+  @override
+  @JsonKey(name: 'status')
+  final String status;
 
   @override
   String toString() {
-    return 'UploadOrderRequest(universityName: $universityName, majorName: $majorName, orderType: $orderType, orderDescription: $orderDescription, deadline: $deadline, filePath: $filePath)';
+    return 'UploadOrderRequest(universityName: $universityName, majorName: $majorName, orderType: $orderType, orderDescription: $orderDescription, deadline: $deadline, filePath: $filePath, status: $status)';
   }
 
   @override
@@ -221,13 +242,14 @@ class _$UploadOrderRequestImpl implements _UploadOrderRequest {
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
             (identical(other.filePath, filePath) ||
-                other.filePath == filePath));
+                other.filePath == filePath) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, universityName, majorName,
-      orderType, orderDescription, deadline, filePath);
+      orderType, orderDescription, deadline, filePath, status);
 
   @JsonKey(ignore: true)
   @override
@@ -251,8 +273,10 @@ abstract class _UploadOrderRequest implements UploadOrderRequest {
       @JsonKey(name: 'type') required final String orderType,
       @JsonKey(name: 'description') required final String orderDescription,
       @JsonKey(name: 'deadline') required final String deadline,
-      @JsonKey(includeFromJson: false, includeToJson: false)
-      final String? filePath}) = _$UploadOrderRequestImpl;
+      @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
+      final String? filePath,
+      @JsonKey(name: 'status')
+      required final String status}) = _$UploadOrderRequestImpl;
 
   factory _UploadOrderRequest.fromJson(Map<String, dynamic> json) =
       _$UploadOrderRequestImpl.fromJson;
@@ -273,8 +297,11 @@ abstract class _UploadOrderRequest implements UploadOrderRequest {
   @JsonKey(name: 'deadline')
   String get deadline;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
   String? get filePath;
+  @override
+  @JsonKey(name: 'status')
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$UploadOrderRequestImplCopyWith<_$UploadOrderRequestImpl> get copyWith =>

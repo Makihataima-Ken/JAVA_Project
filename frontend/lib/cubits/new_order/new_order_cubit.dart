@@ -24,6 +24,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     required String description,
     required String deadline,
     String? filePath,
+    required String status,
   }) async {
     emit(const NewOrderState.loading());
 
@@ -35,6 +36,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
         orderDescription: description,
         deadline: deadline,
         filePath: filePath,
+        status: status,
       );
 
       final response = await _orderRepository.submitOrder(request);

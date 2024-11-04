@@ -26,7 +26,7 @@ class OrderRepository extends BaseOrderRepository {
       },
     );
 
-    final response = await _dioClient.post(
+    final response = await _dioClient.get(
       Endpoints.order,
       data: formData,
     );
