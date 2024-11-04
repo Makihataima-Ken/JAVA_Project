@@ -14,6 +14,7 @@ _$UploadOrderRequestImpl _$$UploadOrderRequestImplFromJson(
       orderType: json['type'] as String,
       orderDescription: json['description'] as String,
       deadline: json['deadline'] as String,
+      status: json['status'] as String,
     );
 
 Map<String, dynamic> _$$UploadOrderRequestImplToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$UploadOrderRequestImplToJson(
       'type': instance.orderType,
       'description': instance.orderDescription,
       'deadline': instance.deadline,
+      'status': instance.status,
     };

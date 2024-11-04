@@ -13,7 +13,10 @@ class UploadOrderRequest with _$UploadOrderRequest {
     @JsonKey(name: 'type') required String orderType,
     @JsonKey(name: 'description') required String orderDescription,
     @JsonKey(name: 'deadline') required String deadline,
-    @JsonKey(includeFromJson: false, includeToJson: false) String? filePath,
+    @JsonKey(includeFromJson: false, includeToJson: false, name: 'file_path')
+    String? filePath,
+    @JsonKey(name: 'status') required String status,
+    
   }) = _UploadOrderRequest;
 
   factory UploadOrderRequest.fromJson(Map<String, dynamic> json) =>
