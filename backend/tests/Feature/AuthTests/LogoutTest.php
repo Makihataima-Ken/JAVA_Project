@@ -9,7 +9,12 @@ uses(RefreshDatabase::class);
 test('logout_test', function () {
 
     // Mock the Auth facade to simulate a logged-in user
-    Auth::shouldReceive('logout')->once();
+    //Auth::shouldReceive('logout')->once();
+
+    //-----------------------------------------------
+    $user = User::factory()->create();// Create a user and authenticate
+    $this->actingAs($user);//imitate a logged in user
+    //------------------------------------------------
 
     // Call the logout method
     $response = $this->postJson('/api/auth/logout'); 

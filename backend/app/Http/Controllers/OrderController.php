@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,19 +15,9 @@ class OrderController extends Controller
      * @param $request 
      * @return JsonResponse
      */
-    public function add_order(Request $request):JsonResponse
+    public function add_order(OrderRequest $request):JsonResponse
     {
         $user=Auth::user();
-
-        // Validate the request data
-        $request->validate([
-            'university' => 'required|string|max:255',
-            'major' => 'required|string',
-            'type' => 'required|string',
-            'description'=>'required|string|max:255',
-            'deadline'=>'required|string',
-            'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
-        ]);
 
         $filePath=null;
 
@@ -55,8 +46,11 @@ class OrderController extends Controller
     public function cancel_order($id): JsonResponse
     {
         $order=Order::find($id);
-        $order->delete();
-        return $this->send('order canceled',null,'HTTP_OK',JsonResponse::HTTP_OK);
+        if($order->status=='pending'){
+            $order->delete();
+            return $this->send('order canceled',null,'HTTP_OK',JsonResponse::HTTP_OK);
+        }
+        return $this->error('can not cancel order',null,'HTTP_EXPECTATION_FAILED',JsonResponse::HTTP_EXPECTATION_FAILED);
     }
 
     /**
@@ -67,7 +61,11 @@ class OrderController extends Controller
     {
         $user=Auth::user();
         $user_orders=Order::where('user_id',$user->id)->get();
-        return $this->send('My Orders',$user_orders,'HTTP_OK',JsonResponse::HTTP_OK);
+        foreach($user_orders as $order)
+        {
+            $orders_overview[]=$order->createOrderOverview();
+        }
+        return $this->send('My Orders',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
 
     }
 

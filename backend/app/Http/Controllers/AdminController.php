@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function approve_order($id):JsonResponse
     {
         $order=Order::find($id);
-        $order->status='approved';
+        $order->status='in progress';
         $order->save();
         return response()->json(['message'=>'order has been approved'],JsonResponse::HTTP_OK);
     }

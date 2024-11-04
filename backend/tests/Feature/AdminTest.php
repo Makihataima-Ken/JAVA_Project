@@ -18,7 +18,7 @@ test('approve_order_validation', function () {
             ->assertJson(['message' => 'order has been approved']);
 
     $this->assertDatabaseHas('orders', [
-        'status' => 'approved',
+        'status' => 'in progress',
     ]);
 });
 
