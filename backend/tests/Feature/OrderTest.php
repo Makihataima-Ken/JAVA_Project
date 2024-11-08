@@ -217,14 +217,16 @@ test('users_order_list_2', function () {
         'status_message' => 'HTTP_OK',
     ]);
 
-    $responseData = $response->json('data');
-    $this->assertCount(2, $responseData);
+    // Check that the returned data matches the user's orders
+    $jsonOrders = $response->json('data');
+    foreach ($jsonOrders as $index => $jsonOrder) {
+        $order = $orders[$index];  // Get the corresponding Order model instance
 
-    foreach ($orders as $index => $order) {
-        $this->assertEquals($order->id, $responseData[$index]['id']);
-        $this->assertEquals($order->type, $responseData[$index]['type']);
-        $this->assertEquals($order->status, $responseData[$index]['status']);
-        //$this->assertEquals($order->created_at, $responseData[$index]['creation_date']);
+        // Compare each field
+        $this->assertEquals($order->id, $jsonOrder['id'], 'Order ID does not match.');
+        $this->assertEquals($order->type, $jsonOrder['type'], 'Order type does not match.');
+        $this->assertEquals($order->status, $jsonOrder['status'], 'Order status does not match.');
+        $this->assertEquals($order->created_at->toJSON(), $jsonOrder['creation_date'], 'Order creation date does not match.');
     }
 });
 

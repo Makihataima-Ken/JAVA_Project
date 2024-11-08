@@ -33,7 +33,7 @@ class Order extends Model
     public function createOrderOverview()
     {
 
-        $orders_overview[]=[
+        $orders_overview=[
 
             'id'=>$this->id,
             'type'=>$this->type,
