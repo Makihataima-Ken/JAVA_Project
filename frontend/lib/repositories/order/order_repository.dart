@@ -14,9 +14,21 @@ class OrderRepository extends BaseOrderRepository {
 
   @override
   Future<AppResponse<NewOrder?>> submitOrder(UploadOrderRequest request) async {
-    final response = await _dioClient.post(
+    final formData = FormData.fromMap(
+      {
+        'university': request.universityName,
+        'major': request.majorName,
+        'type': request.orderType,
+        'description': request.orderDescription,
+        'deadline': request.deadline,
+        if (request.filePath != null)
+          'file_path': await MultipartFile.fromFile(request.filePath!),
+      },
+    );
+
+    final response = await _dioClient.get(
       Endpoints.order,
-      data: request.toJson(),
+      data: formData,
     );
 
     return AppResponse<NewOrder?>.fromJson(
