@@ -32,7 +32,7 @@ test('reject_order_validation', function () {
     $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJson(['message' => 'order has been rejected']);
 
-    $this->assertDatabaseHas('orders', [
-        'status' => 'rejected',
+    $this->assertDatabaseMissing('orders', [
+        'id' => $order->id,
     ]);
 });
