@@ -29,3 +29,4 @@ Route::group(['prefix'=>'orders'],function(){
 //Admin procedures
 Route::post('/approve_order/{id}',[AdminController::class,'approve_order']);
 Route::post('/reject_order/{id}',[AdminController::class,'reject_order']);
+Route::get('/pending_orders',[AdminController::class,'pending_orders']);

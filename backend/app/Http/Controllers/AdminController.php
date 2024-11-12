@@ -32,4 +32,20 @@ class AdminController extends Controller
         $order->delete();
         return response()->json(['message'=>'order has been rejected'],JsonResponse::HTTP_OK);
     }
+
+    /**
+     * show pending orders
+     * @return JsonResponse
+     */
+    public function pending_orders():JsonResponse
+    {
+        
+        $pending_orders=Order::where('status','pending')->get();
+        foreach($pending_orders as $order)
+        {
+            $orders_overview[]=$order->createOrderOverview();
+        }
+        return $this->send('Pending Orders',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
+
+    }
 }
