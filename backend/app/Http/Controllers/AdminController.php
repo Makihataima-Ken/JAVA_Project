@@ -29,8 +29,7 @@ class AdminController extends Controller
     public function reject_order($id):JsonResponse
     {
         $order=Order::find($id);
-        $order->status='rejected';
-        $order->save();
+        $order->delete();
         return response()->json(['message'=>'order has been rejected'],JsonResponse::HTTP_OK);
     }
 }
