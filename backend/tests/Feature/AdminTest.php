@@ -68,3 +68,35 @@ test('pending_orders_view', function () {
         $this->assertEquals($order->created_at->toJSON(), $jsonOrder['creation_date'], 'Order creation date does not match.');
     }
 });
+
+// 4th test
+test('approved_orders_view', function () {
+
+    //-----------------------------------------------
+    $orders = Order::factory()->count(2)->create(['status'=>'in progress']); // create pending orders
+    $order=Order::factory()->create(['status'=>'pending']); // not a pending order
+    //-----------------------------------------------
+
+    //request to see orders
+    $response = $this->get('/api/approved_orders');
+
+    //make sure the respone is working
+    $response->assertStatus(JsonResponse::HTTP_OK)
+    ->assertJson([
+        'success' => true,
+        'message' => 'Orders In Progress',
+        'status_message' => 'HTTP_OK',
+    ]);
+
+    // Check that the returned data matches the user's orders
+    $jsonOrders = $response->json('data');
+    foreach ($jsonOrders as $index => $jsonOrder) {
+        $order = $orders[$index];  // Get the corresponding Order model instance
+ 
+        // Compare each field
+        $this->assertEquals($order->id, $jsonOrder['id'], 'Order ID does not match.');
+        $this->assertEquals($order->type, $jsonOrder['type'], 'Order type does not match.');
+        $this->assertEquals($order->status, $jsonOrder['status'], 'Order status does not match.');
+        $this->assertEquals($order->created_at->toJSON(), $jsonOrder['creation_date'], 'Order creation date does not match.');
+    }
+});

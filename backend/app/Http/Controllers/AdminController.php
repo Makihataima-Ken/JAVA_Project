@@ -48,4 +48,20 @@ class AdminController extends Controller
         return $this->send('Pending Orders',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
 
     }
+
+    /**
+     * show approved orders
+     * @return JsonResponse
+     */
+    public function approved_orders():JsonResponse
+    {
+        
+        $approved_orders=Order::where('status','in progress')->get();
+        foreach($approved_orders as $order)
+        {
+            $orders_overview[]=$order->createOrderOverview();
+        }
+        return $this->send('Orders In Progress',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
+
+    }    
 }
