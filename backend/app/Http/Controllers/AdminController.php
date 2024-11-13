@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -63,5 +64,12 @@ class AdminController extends Controller
         }
         return $this->send('Orders In Progress',$orders_overview,'HTTP_OK',JsonResponse::HTTP_OK);
 
-    }    
+    }
+    
+    public function submitProduct(ProductRequest $request ,$id):JsonResponse
+    {   
+        /// TODO: search for a common way to do this
+        /// TODO: search for the right http request for such a procedure
+        return $this->send('Prodct has been submited',null,'HTTP_OK',JsonResponse::HTTP_OK);
+    }
 }
