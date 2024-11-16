@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->longText('description')->nullable();
             $table->string('deadline');
-            $table->string('user_id')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('status')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
