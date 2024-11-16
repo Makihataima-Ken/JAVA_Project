@@ -7,6 +7,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ProductRequest extends FormRequest
 {
@@ -15,7 +16,9 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        /// TODO: make it exclusive for admin
+        if(Auth::user()->user_type!='admin'){
+            return false;
+        }
         return true;
     }
 
@@ -27,7 +30,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file_path' => 'nullable|mimes:pdf,doc,docx|max:2048'
+            'file_path' => 'nullable|mimes:pdf,doc,docx|max:10240'
         ];
     }
 

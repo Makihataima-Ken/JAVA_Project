@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');             
-            $table->string('usertype')->default('user');
+            $table->string('user_type')->default('user');
             $table->string('phone_number')->unique();    
             $table->string('password');
             $table->rememberToken();
