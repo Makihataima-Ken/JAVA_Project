@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'first_name' => fake()->name(),
             'last_name'=>fake()->lastName(),
-            'usertype'=>'user',
+            'user_type'=>'user',
             'phone_number' => fake()->unique()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

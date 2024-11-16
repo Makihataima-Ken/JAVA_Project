@@ -60,7 +60,11 @@ test('order_fruition_no_file', function () {
 test('cancel_order_fruition_no_file', function () {
 
     //---------------------------------
-    $order = Order::factory()->create();//create a fake order
+    $user = User::factory()->create();// Create a user and authenticate
+    //---------------------------------
+
+    //---------------------------------
+    $order = Order::factory()->create(['user_id'=>$user->id]);//create a fake order
     //---------------------------------
 
     //---------------------------------
@@ -204,7 +208,7 @@ test('users_order_list_2', function () {
 
     //test orders
     $orders=Order::factory()->count(2)->create(['user_id'=>$user->id]);
-    $order2=Order::factory()->create(['user_id'=>2]);
+    $order2=Order::factory()->create();
 
     //request to see orders
     $response = $this->get('/api/orders/user_orders');

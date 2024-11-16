@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class OrderFactory extends Factory
             'type'=>fake()->name(),
             'description'=>fake()->text(),
             'deadline'=>fake()->date(),
+            'user_id'=>User::factory(),
             'status'=>'pending',
             'file_path'=>fake()->filePath(),
             'created_at'=>fake()->time(),
