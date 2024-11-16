@@ -69,6 +69,7 @@ class AdminController extends Controller
     public function submitProduct(ProductRequest $request ,$id):JsonResponse
     {   
         /// TODO: search for a common way to do this
+        $filePath = $request->file('file_path')->store('uploads', 'public');
         /// TODO: search for the right http request for such a procedure
         return $this->send('Prodct has been submited',null,'HTTP_OK',JsonResponse::HTTP_OK);
     }
