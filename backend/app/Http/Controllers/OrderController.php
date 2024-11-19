@@ -60,7 +60,7 @@ class OrderController extends Controller
     public function user_orders():JsonResponse
     {
         $user=Auth::user();
-        $user_orders=Order::where('user_id',$user->id)->get();
+        $user_orders=$user->orders;
         foreach($user_orders as $order)
         {
             $orders_overview[]=$order->createOrderOverview();
