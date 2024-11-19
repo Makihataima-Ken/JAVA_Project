@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -42,5 +43,13 @@ class Order extends Model
         ];
         
         return $orders_overview;
+    }
+
+    /**
+     * return orders user
+     */
+    public function user():HasOne
+    {
+        return $this->hasOne(User::class); // An order can have one user.
     }
 }
